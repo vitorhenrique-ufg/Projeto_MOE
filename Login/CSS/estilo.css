@@ -1,0 +1,115 @@
+
+.escrita{
+	display: block;
+	height: 40px;
+	width: 400px;
+	margin: 5px;
+	border: 1px solid #0F6FC5;
+	font-size: 16pt;
+	padding: 10px 20px;
+	border-radius: 5px;
+
+}
+#principal{
+	width: 420px;
+	margin: 0px auto 0px auto;
+
+}
+.texto{
+	font-family: Arial;
+	font-size: 12pt;
+	font-weight: bold;
+}
+.perfil{
+  	border-radius: 50%;
+  	width: 20px;
+  	height: 20px;
+  	border: 2px solid #999;
+  	transition: 0.2s all linear;
+  	margin-right: 5px;
+  	position: relative;
+  	top: 4px;
+}
+.login{
+	width: 420px;
+	margin: 100px auto 0px auto;
+	background: rgba(0, 0, 256, 0.1);
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px;
+}
+.botao{
+	background-color: #0F6FC5;
+	color: white;
+}
+.botao:hover{
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+.botao.tela-cadastro{
+	background-color: #0F6FC5;
+	color: white;
+	width:200px;
+	height: 45px;
+}
+.botao.tela-cadastro:hover{
+	background-color: black;
+	color: white;
+	width:200px;
+}
+
+.botao.voltar{
+	background:red;
+}
+
+.botao.voltar:hover{
+	background:black;
+}
+
+.alinharBotoes{
+	display: inline-flex;
+}
+
+input:focus{
+	border-radius:1px;
+}
+
+.titulo{
+	text-align: center;
+	
+	color:  #0F6FC5;
+}
+.cadastrar{
+	color: #0F6FC5;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: red;
+}
+
+#sucesso{
+	width: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	
+	text-align: center;
+	background-color: rgba(50,205,50,.3);
+	border: 1px solid rgb(34,139,34);
+	
+}
+
+.erro{
+	width: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	
+	text-align: center;
+	background-color: rgba(250,128,114,.3);
+	border: 1px solid rgb(165,42,42);
+
+}
