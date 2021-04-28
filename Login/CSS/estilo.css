@@ -8,8 +8,22 @@
 	font-size: 16pt;
 	padding: 10px 20px;
 	border-radius: 5px;
-
+	font-family: Arial;
 }
+.descricao{
+	
+	display: block;
+	height: 80px;
+	width: 400px;
+	margin: 5px;
+	border: 1px solid #0F6FC5;
+	font-size: 16pt;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-family: Arial;
+}
+
+
 #principal{
 	width: 420px;
 	margin: 0px auto 0px auto;

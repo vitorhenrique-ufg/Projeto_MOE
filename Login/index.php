@@ -30,8 +30,6 @@
 						header("location: estagiario.php");
 					}elseif ($u->logarEmpregador($email,$senha)) {
 						header("location: empregador.php");
-					}elseif ($u->logarCoordenador($email,$senha)) {
-						header("location: coordenador.php");
 					}
 					else{
 						?>
