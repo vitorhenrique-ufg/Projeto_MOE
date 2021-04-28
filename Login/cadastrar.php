@@ -9,7 +9,7 @@
 		<meta charset="utf-8"/>
 		<title>Cadastrar</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
-		<script type="text/javascript" src="JS/cadastrar.js"></script>
+		<script defer" src="JS/cadastrar.js"></script>
 	</head>
 	<body>
 		<div id="principal" class="login">
@@ -22,12 +22,39 @@
 				<input type="password" class= "escrita" name="senha" placeholder="Senha" maxlength="15" required>
 				<input type="password" class= "escrita" name="confirmasenha" placeholder="Confirme a senha" maxlength="15" >
 				
-				 <div>
-				      <input type="radio" id="tipo1" name="contact" value="estagiario" class="perfil" onclick=estagiario()>
+				 <div class="tiposUsuario">
+				      <input type="radio" id="tipoEstagiario" name="contact" value="estagiario" class="perfil" onclick=aoSelecionarTipoUsuario()>
 				      <label for="estagiario" class="texto">Estagiário</label>
 
-				      <input type="radio" id="tipo3" name="contact" value="empregador" class="perfil" onclick=empregador()>
+				      <input type="radio" id="tipoEmpregador" name="contact" value="empregador" class="perfil" onclick=aoSelecionarTipoUsuario()>
 				      <label for="empregador" class="texto">Empregador</label>
+				</div>
+				
+				<div class="div-estagiario">
+					<div>
+						<input type=text name="nome-instituicao" placeholder="Nome da instituição" class="escrita" required>
+					</div>
+					<div>
+						<input type=text name="nome-curso" placeholder="Curso" class="escrita" required>
+					</div>
+					<div>
+						<input type=text name="ano-ingresso" placeholder="Ano de ingresso" class="escrita" required>
+					</div>
+					<div>
+						<input type=text name="mini-curriculo" placeholder="Mini-curriculo" class="escrita" required>
+					</div>
+				</div>
+				
+				<div class="div-empregador">
+					<div>
+						<input type=text name="nome-contato" placeholder="Nome do contato" class="escrita" required>
+					</div>
+					<div>
+						<input type=text name="endereco" placeholder="Endereço" class="escrita" required>
+					</div>
+					<div>
+						<input type=text name="descricao" placeholder="Descrição" class="escrita" required>
+					</div>
 				</div>
 				
 				<div id="teste">
@@ -144,5 +171,14 @@
 					}
 				}
 			?>	
+			
+			<script defer>
+				const camposEstagiario = document.querySelector('.div-estagiario');
+				const camposEmpregador = document.querySelector('.div-empregador');
+				const radioEstagiario = document.querySelector('input[id="tipoEstagiario"]');
+				const radioEmpregador = document.querySelector('input[id="tipoEmpregador"]');
+				
+				aoSelecionarTipoUsuario();
+			</script
 	</body>
 </html>

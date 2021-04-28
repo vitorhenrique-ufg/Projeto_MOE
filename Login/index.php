@@ -25,7 +25,6 @@
 			if(!empty($email) && !empty($senha)){
 				$u->conectar("projeto_login", "localhost", "root", "");
 				if($u->msg == ""){
-
 					
 					if($u->logarAluno($email,$senha)){
 						header("location: estagiario.php");
@@ -45,7 +44,6 @@
 				}else{
 					echo "Erro: ".$u->msg;
 				}
-				
 			}
 		}
 		?>	
