@@ -113,3 +113,15 @@ a:hover{
 	border: 1px solid rgb(165,42,42);
 
 }
+
+.tiposUsuario{
+	margin-left:90px;
+}
+
+.d-none{
+	display: none;
+}
+
+input[type="radio"]:hover{
+	cursor: pointer;
+}
