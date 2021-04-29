@@ -56,8 +56,7 @@
 						<input type="text" name="endereco" placeholder="Endereço" class="escrita" maxlength="50" >
 					</div>
 					<div>
-						<textarea name="descricao" placeholder="Descrição" class="descricao" maxlength="50"></textarea>
-						
+						<textarea name="descricao" placeholder="Descrição" class="descricao" maxlength="50"></textarea>			
 					</div>
 				</div>
 				
@@ -106,7 +105,6 @@
 											</div>
 										<?php
 									}
-
 								}else{
 									?>
 									<div class="erro">
