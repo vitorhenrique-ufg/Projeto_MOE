@@ -9,7 +9,7 @@
 		<meta charset="utf-8"/>
 		<title>Login Empregador</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
-		<script defer" src="JS/cadastrar.js"></script>
+		<script defer" src="JS/empregador.js"></script>
 	</head>
 	<body>
 		
@@ -23,13 +23,9 @@
 					</ul>
 				</li>
 				<li><a href="#" onclick="aoSelecionarConsultarEstagiario()">Estagiários</a></li>
+				<li><a href="index.php"> Sair</a></li>
 			</ul>
 		</nav>
-		
-		<div>
-			<h1 style="position: absolute">Empresa 01</h1>
-		</div>
-		
 		<div id="principal" class="login">
 			<form method="POST">
 			
@@ -84,41 +80,7 @@
 		const divCamposConsultaEstagiarios = document.querySelector('.campos-consultar-estagiarios');
 		
 		escondaCamposAposCarregarTela();
-		
-		function escondaCamposAposCarregarTela(){
-			divCamposVagasEstagio.classList.add('d-none');
-			divCamposEditarVaga.classList.add('d-none');
-			divCamposDadosCadastrados.classList.add('d-none');
-			divCamposConsultaEstagiarios.classList.add('d-none');
-		}
-		
-		function aoSelecionarAlterarDados(){	
-			divCamposDadosCadastrados.classList.remove('d-none');
-			divCamposVagasEstagio.classList.add('d-none');
-			divCamposEditarVaga.classList.add('d-none');
-			divCamposConsultaEstagiarios.classList.add('d-none');
-		}
-		
-		function aoSelecionarVagasEstagio(){	
-			divCamposVagasEstagio.classList.remove('d-none');
-			divCamposDadosCadastrados.classList.add('d-none');
-			divCamposEditarVaga.classList.add('d-none');
-			divCamposConsultaEstagiarios.classList.add('d-none');
-		}
-		
-		function aoSelecionarEditarVagasEstagio(){	
-			divCamposEditarVaga.classList.remove('d-none');
-			divCamposVagasEstagio.classList.add('d-none');
-			divCamposDadosCadastrados.classList.add('d-none');
-			divCamposConsultaEstagiarios.classList.add('d-none');
-		}
-		
-		function aoSelecionarConsultarEstagiario(){	
-			divCamposConsultaEstagiarios.classList.remove('d-none');
-			divCamposVagasEstagio.classList.add('d-none');
-			divCamposEditarVaga.classList.add('d-none');
-			divCamposDadosCadastrados.classList.add('d-none');
-		}
+
 		
 	</script>
 	

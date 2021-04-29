@@ -3,7 +3,7 @@ function aoClicarBotaoVoltar(){
 }
 
 function aoSelecionarTipoUsuario(){
-				
+				debugger;
 				const childrensEstagiario = Array.from(camposEstagiario.children);
 				const childrensEmpregador = Array.from(camposEmpregador.children);
 				

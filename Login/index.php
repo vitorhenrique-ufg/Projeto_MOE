@@ -1,6 +1,9 @@
 <?php
-	require_once 'CLASSES/usuarios.php';
-	$u = new Usuario;
+	require_once 'CLASSES/Estagiario.php';
+	require_once 'CLASSES/Empregador.php';
+	
+	$s = new Estagiario;
+	$m = new Empregador;
 ?>
 <html lang="pt-br">
 	<head>
@@ -23,13 +26,21 @@
 			$email = addslashes($_POST['email']);
 			$senha = addslashes($_POST['senha']);
 			if(!empty($email) && !empty($senha)){
-				$u->conectar("projeto_login", "localhost", "root", "");
-				if($u->msg == ""){
+
+				$pdo;
+				$msg = "";
+				try {
+					$pdo = new PDO("mysql:dbname="."projeto_login".";host="."localhost","root","");
+				} catch (PDOException $e) {
+					global $msg;
+					$msg = $e->getMessage();
+				}
+				if($msg == ""){
 					
-					if($u->logarAluno($email,$senha)){
-						header("location: estagiario.php");
-					}elseif ($u->logarEmpregador($email,$senha)) {
-						header("location: empregador.php");
+					if($s->logarEstagiario($email,$senha,$pdo)){
+						header("location: telaPrincipalEstagiario.php");
+					}elseif ($m->logarEmpregador($email,$senha,$pdo)) {
+						header("location: telaPrincipalEmpregador.php");
 					}
 					else{
 						?>
@@ -40,7 +51,7 @@
 						<?php
 					}
 				}else{
-					echo "Erro: ".$u->msg;
+					echo "Erro: ".$msg;
 				}
 			}
 		}

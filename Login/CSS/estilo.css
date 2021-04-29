@@ -147,7 +147,7 @@ input[type="radio"]:hover{
 .menu-empregador{
 	width: 100%;
 	height: 50px;
-	background-color: #222;
+	background: rgba(0, 0, 256, 0.1);
 	font-family: 'Arial';
 }
 
@@ -174,7 +174,7 @@ input[type="radio"]:hover{
 }
 .menu-empregador ul li a:hover {
 	background-color: #f4f4f4;
-	color:red;
+	color:#0F6FC5;
 }
 
 .menu-empregador ul li:hover ul{
@@ -199,4 +199,214 @@ input[type="radio"]:hover{
 	height: 448px;
 	box-shadow: 0px 2px 8px darkblue;
 	border-radius:10px;
+}*{
+	margin:0;
+	padding:0;	
+}
+
+.escrita{
+	display: block;
+	height: 40px;
+	width: 400px;
+	margin: 5px;
+	border: 1px solid #0F6FC5;
+	font-size: 16pt;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-family: Arial;
+}
+.descricao{
+	
+	display: block;
+	height: 80px;
+	width: 400px;
+	margin: 5px;
+	border: 1px solid #0F6FC5;
+	font-size: 16pt;
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-family: Arial;
+}
+
+
+#principal{
+	width: 420px;
+	margin: 90px auto 0px auto;
+
+}
+.texto{
+	font-family: Arial;
+	font-size: 12pt;
+	font-weight: bold;
+}
+.perfil{
+  	border-radius: 50%;
+  	width: 20px;
+  	height: 20px;
+  	border: 2px solid #999;
+  	transition: 0.2s all linear;
+  	margin-right: 5px;
+  	position: relative;
+  	top: 4px;
+}
+.login{
+	width: 420px;
+	margin: 100px auto 0px auto;
+	\
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px;
+}
+.botao{
+	background-color: #0F6FC5;
+	color: white;
+}
+.botao:hover{
+	background-color: black;
+	color: white;
+	cursor: pointer;
+}
+
+.botao.tela-cadastro{
+	background-color: #0F6FC5;
+	color: white;
+	width:200px;
+	height: 45px;
+}
+.botao.tela-cadastro:hover{
+	background-color: black;
+	color: white;
+	width:200px;
+}
+
+.botao.voltar{
+	background:red;
+}
+
+.botao.voltar:hover{
+	background:black;
+}
+
+.alinharBotoes{
+	display: inline-flex;
+}
+
+input:focus{
+	border-radius:1px;
+}
+
+.titulo{
+	text-align: center;
+	
+	color:  #0F6FC5;
+}
+.cadastrar{
+	color: #0F6FC5;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+}
+
+a:hover{
+	text-decoration: underline;
+	color: red;
+}
+
+#sucesso{
+	width: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	
+	text-align: center;
+	background-color: rgba(50,205,50,.3);
+	border: 1px solid rgb(34,139,34);
+	
+}
+
+.erro{
+	width: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	
+	text-align: center;
+	background-color: rgba(250,128,114,.3);
+	border: 1px solid rgb(165,42,42);
+
+}
+
+.tiposUsuario{
+	margin-left:90px;
+}
+
+.d-none{
+	display: none;
+}
+
+input[type="radio"]:hover{
+	cursor: pointer;
+}
+
+.menu-empregador{
+	width: 600px;
+	height: 50px;
+	background: rgba(0, 0, 256, 0.1);
+	font-family: 'Arial';
+}
+
+.menu-empregador ul{
+	list-style: none;
+	position: relative;
+}
+.menu-empregador ul ul{
+	visibility: hidden;
+}
+
+.menu-empregador ul li{
+	width: 150px;
+	float: left;
+}
+
+.menu-empregador ul li a {
+	padding: 15px;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	background-color: #0F6FC5;
+	color: white;
+}
+.menu-empregador ul li a:hover {
+	background-color: rgba(0, 0, 256, 0.1);
+	color:#0F6FC5;
+}
+
+
+.menu-empregador ul li:hover ul{
+	visibility: visible;
+}
+
+.botao-editar{
+	background-color: #0F6FC5;
+	color: white;
+	width:95%;
+	height: 45px;
+	margin-left:7px;
+}
+
+.botao-editar:hover{
+	background-color: black;
+	color: white;
+	cursor:pointer;
+}
+
+.campos-editar-dados{
+	height: 448px;
+	box-shadow: 0px 2px 8px darkblue;
+	border-radius:10px;
+}
+
+.alterar{
+	width: 420px;
+	margin: 50px auto 0px auto;
+	background: rgba(0, 0, 256, 0.1);
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px;
 }

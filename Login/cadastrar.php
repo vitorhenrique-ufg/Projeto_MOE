@@ -1,7 +1,11 @@
 
 <?php
-	require_once 'CLASSES/usuarios.php';
-	$u = new Usuario;
+	
+	require_once 'CLASSES/Estagiario.php';
+	require_once 'CLASSES/Empregador.php';
+	
+	$s = new Estagiario;
+	$m = new Empregador;
 ?>
 
 <html lang="pt-br">
@@ -56,7 +60,8 @@
 						<input type="text" name="endereco" placeholder="Endereço" class="escrita" maxlength="50" >
 					</div>
 					<div>
-						<textarea name="descricao" placeholder="Descrição" class="descricao" maxlength="50"></textarea>			
+						<textarea name="descricao" placeholder="Descrição" class="descricao" maxlength="50"></textarea>
+						
 					</div>
 				</div>
 				
@@ -77,7 +82,16 @@
 					$senha = addslashes($_POST['senha']);
 					$confirmarSenha = addslashes($_POST['confirmasenha']);
 					$tipo = addslashes($_POST['contact']);
+					$pdo;
+					$msg = "";
+					try {
+						$pdo = new PDO("mysql:dbname="."projeto_login".";host="."localhost","root","");
+					} catch (PDOException $e) {
+						global $msg;
+						$msg = $e->getMessage();
+					}
 					
+
 					if($senha == $confirmarSenha){
 
 						if($tipo == 'estagiario'){
@@ -88,10 +102,9 @@
 							$curriculo = addslashes($_POST['curriculo']);
 
 							if(!empty($nome) && !empty($email) && !empty($senha) && !empty($confirmarSenha) && !empty($curso) && !empty($ano) && !empty($curriculo)){
-								$u->conectar("projeto_login", "localhost", "root", "");
-								if($u->msg == ""){
+								if($msg == ""){
 									
-									if($u->cadastrarEstagiario($nome,$email,$senha,$curso,$ano,$curriculo,$tipo)){
+									if($s->cadastrarEstagiario($nome,$email,$senha,$curso,$ano,$curriculo,$tipo,$pdo)){
 										
 										?>
 										<div id="sucesso">
@@ -105,10 +118,11 @@
 											</div>
 										<?php
 									}
+
 								}else{
 									?>
 									<div class="erro">
-										<?php echo "Erro: ".$u->msg; ?>
+										<?php echo "Erro: ".$msg; ?>
 									</div>
 									<?php
 								}
@@ -129,10 +143,10 @@
 							$descricao = addslashes($_POST['descricao']);
 
 							if(!empty($email) && !empty($senha) && !empty($confirmarSenha) && !empty($empresa) && !empty($contato) && !empty($endereco) && !empty($descricao)){
-								$u->conectar("projeto_login", "localhost", "root", "");
-								if($u->msg == ""){
+								
+								if($msg == ""){
 									
-									if($u->cadastrarEmpregador($email,$senha,$empresa,$contato, $endereco, $descricao, $tipo)){
+									if($m->cadastrarEmpregador($email,$senha,$empresa,$contato, $endereco, $descricao, $tipo,$pdo)){
 										
 										?>
 										<div id="sucesso">
@@ -150,7 +164,7 @@
 								}else{
 									?>
 									<div class="erro">
-										<?php echo "Erro: ".$u->msg; ?>
+										<?php echo "Erro: ".$msg; ?>
 									</div>
 									<?php
 								}
@@ -164,14 +178,13 @@
 						}
 					}else{
 						?>
-							<div class="erro">
-									As senhas não conferem!
-								</div>
-							<?php
+						<div class="erro">
+							As senhas não conferem!
+						</div>
+						<?php
 					}
 				}
 			?>	
-			
 			<script defer>
 				const camposEstagiario = document.querySelector('.div-estagiario');
 				const camposEmpregador = document.querySelector('.div-empregador');
