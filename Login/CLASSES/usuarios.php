@@ -50,7 +50,6 @@
 				return false;
 			}else{
 				$sql = $pdo->prepare("INSERT INTO empregador(email,senha,empresa,contato,endereco,descricao,tipo) VALUES (:e, :s, :m, :c, :n, :d, :p)");
-
 				
 				$sql->bindValue(":e",$email);
 				$sql->bindValue(":s",md5($senha));
@@ -64,8 +63,6 @@
 			}
 
 		}
-
-
 
 		public function logarAluno($email, $senha){
 			global $pdo;
@@ -98,10 +95,5 @@
 				return false;
 			}
 		}
-
-	
-
 	}
-
-
 ?>
