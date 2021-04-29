@@ -2,7 +2,6 @@
 
 	Class Empregador{
 		
-
 		public function cadastrarEmpregador($nome, $telefone, $email, $senha, $contato, $endereco, $descricao, $tipo, $pdo){
 			global $pdo;
 			//verifica cadastro
@@ -29,9 +28,6 @@
 
 		}
 
-
-
-
 		public function logarEmpregador($email, $senha, $pdo){
 
 			$sql = $pdo->prepare("SELECT id_users FROM empregador WHERE email = :e AND senha = :s");
@@ -47,10 +43,5 @@
 				return false;
 			}
 		}
-
-	
-
 	}
-
-
 ?>
