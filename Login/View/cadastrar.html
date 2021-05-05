@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Cadastrar</title>
+	<link rel="stylesheet" type="text/css" href="http://localhost/Login/CSS/estilo.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script defer" src="http://localhost/Login/JS/cadastrar.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<div id=" principal" class="login form-cadastrar">
+
+		<form onsubmit="return false">
+			<h1 class="titulo">Informações para cadastro</h1>
+			<input type="email" id="email" class="escrita generalInput" name="email" placeholder="E-mail" maxlength="50"
+				required>
+			<input type="password" id="senha" class="escrita generalInput" name="senha" placeholder="Senha"
+				maxlength="15" required>
+			<input type="password" id="confirmasenha" class="escrita generalInput" name="confirmasenha"
+				placeholder="Confirme a senha" maxlength="15">
+
+			<div class="tiposUsuario">
+				<input type="radio" id="tipo1" name="contact" value="estagiario" class="perfil"
+					onclick=aoSelecionarTipoUsuario()>
+				<label for="estagiario" class="texto radioButton">Estagiário</label>
+
+				<input type="radio" id="tipo2" name="contact" value="empregador" class="perfil"
+					onclick=aoSelecionarTipoUsuario()>
+				<label for="empregador" class="texto ">Empregador</label>
+			</div>
+
+			<div class="div-estagiario">
+
+				<div>
+					<input type="text" name="nome" id="nome" placeholder="Nome completo" maxlength="50"
+						class="escrita generalInput">
+				</div>
+				<div>
+					<input type="text" name="curso" id="curso" placeholder="Curso" maxlength="50"
+						class="escrita generalInput">
+				</div>
+				<div>
+					<input type="text" name="ano" id="ano" placeholder="Ano de ingresso" class="escrita generalInput">
+				</div>
+				<div>
+					<textarea name="curriculo" id="curriculo" placeholder="Curriculo" class="descricao"
+						maxlength="300"></textarea>
+
+				</div>
+			</div>
+
+			<div class="div-empregador">
+				<div>
+					<input type="text" name="empresa" id="empresa" placeholder="Nome da empresa"
+						class="escrita generalInput" maxlength="50">
+				</div>
+				<div>
+					<input type="text" name="contato" id="contato" placeholder="Nome do contato"
+						class="escrita generalInput" maxlength="50">
+				</div>
+				<div>
+					<input type="text" name="endereco" id="endereco" placeholder="Endereço" class="escrita generalInput"
+						maxlength="50">
+				</div>
+				<div>
+					<textarea name="descricao" id="descricao" placeholder="Descrição" class="descricao"
+						maxlength="50"></textarea>
+
+				</div>
+			</div>
+
+			<div>
+				<div class="alinharBotoes">
+					<input type="submit" value="Cadastrar" class="escrita botao tela-cadastro"
+						onclick="aoClicarEntrar()">
+					<input type="submit" value="Voltar" class="escrita botao tela-cadastro voltar"
+						onclick="aoClicarBotaoVoltar()">
+				</div>
+			</div>
+			<span class="invalido d-none"><i class="fa fa-exclamation-triangle">Senhas Inválidas!</i></span>
+			<span class="diferente d-none"><i class="fa fa-exclamation-triangle">As duas senhas são
+					diferentes</i></span>
+			<span class="possui d-none"><i class="fa fa-exclamation-triangle">Usuário já possui cadastro</i></span>
+		</form>
+	</div>
+	<script defer>
+		const camposEstagiario = document.querySelector('.div-estagiario');
+		const camposEmpregador = document.querySelector('.div-empregador');
+		const radioEstagiario = document.querySelector('input[id="tipo1"]');
+		const radioEmpregador = document.querySelector('input[id="tipo2"]');
+
+		aoSelecionarTipoUsuario();
+	</script>
+</body>
+
+</html>

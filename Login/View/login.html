@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="http://localhost/Login/CSS/estilo.css">
+	<script defer" src="http://localhost/Login/JS/login.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<div class="login">
+		<h1 class="titulo">Bem-vindo ao MOE!</h1>
+		<!--form method="POST" action="http://localhost/Login/Login/verificaLogin"-->
+			<form onsubmit="return false">
+			<input type="email" class="escrita generalInput" id="email" name="email" placeholder="E-mail" required>
+			<input type="password" class="escrita generalInput" id="senha" name="senha" placeholder="Senha" required>
+			<input type="submit" value="Entrar" class="escrita botao" onclick="aoClicarEntrar()">
+			
+			<span class="msg-erro d-none"><i class="fa fa-exclamation-triangle">Login inválido</i></span>
+	
+			<a href="http://localhost/Login/CadastrarUsuario/index" class="cadastrar">Não possui cadastro?
+				Cadastre-se!</a>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+
+	
+	
+</script>
+
+	
+</html>
