@@ -11,11 +11,12 @@
 		private $endereco;
 		private $descricao;
 
-		public function __constructor($email, $senha, $empresa, $contato, $endereco, $descricao, $tipo){
+		public function __construct($email, $senha, $empresa, $contato, $endereco, $descricao, $tipo){
 			$this->email = $email;
 			$this->senha = $senha;
-			$this->contato = $contato;
+			$this->nomeContato = $contato;
 			$this->endereco = $endereco;
+			$this->nomeEmpresa = $empresa;
 			$this->descricao = $descricao;
 			$this->tipoUsuario = $tipo;
 		}
@@ -33,11 +34,11 @@
 		}
 		
 		public function obtenhaEmpresa(){
-			return $this->empresa;
+			return $this->nomeEmpresa;
 		}
 		
 		public function obtenhaContato(){
-			return $this->contato;
+			return $this->nomeContato;
 		}
 		
 		public function obtenhaEndereco(){
@@ -45,7 +46,7 @@
 		}
 		
 		public function obtenhaDescricao(){
-			return $this->tipoUsuario;
+			return $this->descricao;
 		}
 	}
 ?>

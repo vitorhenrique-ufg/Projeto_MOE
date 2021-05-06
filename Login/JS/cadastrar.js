@@ -165,7 +165,7 @@ function aoClicarEntrar() {
 				}
 			},
 			error: function (e1) {
-				alert("Algo deu errado!");
+				
 
 			}
 		});
