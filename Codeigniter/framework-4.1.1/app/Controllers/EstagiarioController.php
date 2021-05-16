@@ -23,6 +23,10 @@ class EstagiarioController extends BaseController
         return view('login');
     }
 
+    public function seguirEmpresa(){
+        return view('seguirEmpresa');
+    }
+
     public function retornaInformacao(){
         @session_start();
         $db = db_connect();
@@ -59,7 +63,7 @@ class EstagiarioController extends BaseController
         $db = db_connect();
         $sql = "SELECT * FROM estagiario WHERE email = ? AND senha = ?";
         $senhaCriptografada = md5($senha);
-        $result = $db->query($sql, [$email, $senhaCriptografada])->getRow();
+        $result = $db->query($sql, [$email, $senha])->getRow();
         if($result){
             $_SESSION['id_users'] = $result->id_users;
             return true;
@@ -104,6 +108,35 @@ class EstagiarioController extends BaseController
             $arr = [
                 'sucesso' => false,
                 'mensagem' => "possui"
+            ];
+            return $this->respondCreated($arr);
+        }
+    }
+    
+    public function seguirEmpresasSelecionadas(){
+        @session_start();
+        $db = db_connect();
+        $empresasSelecionadas = json_decode(@$_POST['jsonEmpresas'], true);
+        //unserialize(base64_decode(@$_POST['empresas']));
+      // var_dump($empresasSelecionadas[0]["Nome"]);
+        try{
+            foreach($empresasSelecionadas as $empresa["Nome"]){
+                $sqlEmpresasAssociadas = "SELECT * from empregador WHERE empresa = ?";
+                $empresasAssociadas = $db->query($sqlEmpresasAssociadas, [$empresa["Nome"]])->getRow();
+                
+                $sql = "INSERT INTO seguirEmpresa (id_estagiario, id_empregador) VALUES (?, ?)";
+                $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]);
+            }
+            header('Content-Type: application/json');
+            $arr = [
+                'sucesso' => true
+            ];
+            return $this->respondCreated($arr);
+        }
+        catch(PDOException $e){
+            header('Content-Type: application/json');
+            $arr = [
+                'sucesso' => false,
             ];
             return $this->respondCreated($arr);
         }
