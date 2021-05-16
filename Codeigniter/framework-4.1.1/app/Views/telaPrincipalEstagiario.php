@@ -239,10 +239,8 @@ function aoSelecionarConsultarEmpresa() {
 }
 
 function aoSelecionarSeguirEmpresa() {
-    divCamposSeguirEmpresa.classList.remove('d-none');
-    divCamposEditarDados.classList.add('d-none');
-    divCamposConsultarVagaEstagio.classList.add('d-none');
-    divCamposConsultarEmpresa.classList.add('d-none');
+   
+    window.location.href = "http://localhost/EstagiarioController/seguirEmpresa";
 }
 
 function aoClicarAlterar() {
