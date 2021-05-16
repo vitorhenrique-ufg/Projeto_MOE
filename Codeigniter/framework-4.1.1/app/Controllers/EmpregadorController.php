@@ -111,4 +111,20 @@ class EmpregadorController extends BaseController
             echo json_encode($arr);
         }
     }
+
+    public function obtenhaEmpresasCadastradas(){
+        @session_start();
+        $db = db_connect();
+        $sql = "SELECT empresa, contato, endereco, descricao FROM empregador";
+        $result = $db->query($sql)->getResultArray();
+        //var_dump($result);
+        if($result){
+            header('Content-Type: application/json');
+            $array = [
+                'sucesso' => true,
+                'empresas' => $result
+            ];
+            return $this->respondCreated($array);
+        }
+    }
 }
