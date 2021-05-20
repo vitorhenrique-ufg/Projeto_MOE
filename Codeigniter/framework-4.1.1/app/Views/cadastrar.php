@@ -163,7 +163,7 @@ input[type="radio"]:hover{
 		<form onsubmit="return false">
 			<h1 class="titulo">Informações para cadastro</h1>
 			<input type="email" class="escrita generalInput" id="email" name="email" placeholder="E-mail" required>
-				<input type="email" class="escrita generalInput" id="email" name="email" placeholder="E-mail" required>
+				
 			<input type="password" id="senha" class="escrita generalInput" name="senha" placeholder="Senha"
 				maxlength="15" required>
 			<input type="password" id="confirmasenha" class="escrita generalInput" name="confirmasenha"
@@ -280,7 +280,7 @@ input[type="radio"]:hover{
 		}
 
 		function aoClicarBotaoVoltar() {
-			window.location.href = "http://localhost/index";
+			window.location.href = "http://localhost";
 		}
 
 		function aoClicarCadastrar() {
@@ -291,47 +291,54 @@ input[type="radio"]:hover{
 			const possui = document.querySelector('.possui');
 			const diferente = document.querySelector('.diferente');
 
-			const dadosCadastraisEstagiario = [
-				document.getElementById('email').value,
-				document.getElementById('senha').value,
-				document.getElementById('confirmasenha').value,
-				document.getElementById('nome').value,
-				document.getElementById('curso').value,
-				document.getElementById('ano').value,
-				document.getElementById('curriculo').value,
-				"estagiario"
-			];
+			
 
 			if (radioEstagiario.checked) {
 				debugger;
 				$.ajax({
-            type: "POST",
+            		type: "POST",
 
-            url: "http://localhost/CadastrarUsuarioController/verificaCadastro",
-            data: { email: document.getElementById('email').value, senha : document.getElementById('senha').value},
+		           	url: "http://localhost/CadastrarUsuarioController/verificaCadastro",
+		            data: { 
+		            	email: document.getElementById('email').value,
+						senha: document.getElementById('senha').value,
+						confirmasenha: document.getElementById('confirmasenha').value,
+						nome: document.getElementById('nome').value,
+						curso: document.getElementById('curso').value,
+						ano: document.getElementById('ano').value,
+						curriculo: document.getElementById('curriculo').value,
+						tipo: "estagiario"
+		        	},
 
-            success: function (result) {
-                
-                if (result.sucesso == false) {
-                    
-                    mensagemErro.classList.remove('d-none');
-                    return;
-                }
-                if(result.sucesso==true){
-                    //location.href=result.redirect;
-                    if(result.mensagem == 'Estagiario'){
-                        
-                        window.location.href = "http://localhost/EstagiarioController/index";
-                    }
-                    if(result.mensagem == 'Empregador'){
-                        window.location.href = "http://localhost/EmpregadorEmpregador/index";
-                    }
-                }		
-            },
-            error: function (e1) {
-                e = e1;
-            }
-        }); 
+		            success: function (result) {
+		                if (result.sucesso == false) {
+							if (result.mensagem == 'invalido') {
+								possui.classList.add('d-none');
+								diferente.classList.add('d-none');
+								invalido.classList.remove('d-none');
+							} else if (result.mensagem == 'possui') {
+								invalido.classList.add('d-none');
+								diferente.classList.add('d-none');
+								possui.classList.remove('d-none');
+							} else {
+								possui.classList.add('d-none');
+								invalido.classList.add('d-none');
+								diferente.classList.remove('d-none');
+							}
+
+						}
+						if (result.sucesso == true) {
+
+							if (result.mensagem == 'Estagiario') {
+								
+								window.location.href = "http://localhost";
+							}
+						} 
+		            },
+		            error: function (e1) {
+		                alert("deu errado");
+		            }
+       	 		}); 
 			}
 
 			if (radioEmpregador.checked) {
@@ -352,7 +359,7 @@ input[type="radio"]:hover{
 						descricao: document.getElementById('descricao').value
 					},
 					success: function (result) {
-
+						
 						if (result.sucesso == false) {
 							if (result.mensagem == 'invalido') {
 								possui.classList.add('d-none');
@@ -372,18 +379,10 @@ input[type="radio"]:hover{
 						if (result.sucesso == true) {
 
 							if (result.mensagem == 'Empregador') {
-								alert('Usuário cadastrado com sucesso!');
-								window.location.href = "http://localhost/index";
+								
+								window.location.href = "http://localhost";
 							}
-						} else {
-							if (result.mensagem == "possui") {
-								alert('Usuário já cadastrado!');
-							} else if (result.mensagem == "diferente") {
-								alert('As senhas são diferentes!');
-							} else if (result.mensagem == "invalido") {
-								alert("A senha precisa conter pelo menos 1 caracter.");
-							}
-						}
+						} 
 					},
 					error: function (e1) {
 						alert('Algo deu errado');

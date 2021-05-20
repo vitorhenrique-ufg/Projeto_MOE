@@ -13,10 +13,10 @@ class EmpregadorController extends BaseController
 {
     use ResponseTrait;
 
-	public function index()
-	{
-		return view('telaPrincipalEmpregador');
-	}
+    public function index()
+    {
+        return view('telaPrincipalEmpregador');
+    }
 
     public function encerreLogin(){
         return view('login');
@@ -109,6 +109,22 @@ class EmpregadorController extends BaseController
             header('Content-Type: application/json');
             $arr = array('sucesso' => false, 'mensagem' => "possui" );
             echo json_encode($arr);
+        }
+    }
+
+    public function obtenhaEmpresasCadastradas(){
+        @session_start();
+        $db = db_connect();
+        $sql = "SELECT empresa, contato, endereco, descricao FROM empregador";
+        $result = $db->query($sql)->getResultArray();
+        //var_dump($result);
+        if($result){
+            header('Content-Type: application/json');
+            $array = [
+                'sucesso' => true,
+                'empresas' => $result
+            ];
+            return $this->respondCreated($array);
         }
     }
 }

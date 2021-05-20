@@ -121,7 +121,7 @@
 			<li><a href="#" onclick="aoSelecionarAlterarDadosEstagiario()">Alterar dados</a></li>
 			<li><a href="#">Empresas</a>
 				<ul>
-					<li><a href="#" onclick="aoSelecionarConsultarEmpresa()">Empresas cadastradas</a></li>
+					
 					<li><a href="#" onclick="aoSelecionarSeguirEmpresa()">Seguir empresas</a></li>
 				</ul>
 			</li>
@@ -225,24 +225,13 @@ divCamposSeguirEmpresa.classList.add('d-none');
 }
 
 function aoSelecionarConsultarVaga() {
-    divCamposConsultarVagaEstagio.classList.remove('d-none');
-    divCamposEditarDados.classList.add('d-none');
-    divCamposConsultarEmpresa.classList.add('d-none');
-    divCamposSeguirEmpresa.classList.add('d-none');
+    window.location.href = "http://localhost/EstagiarioController/estagioDisponiveis";
 }
 
-function aoSelecionarConsultarEmpresa() {
-    divCamposConsultarEmpresa.classList.remove('d-none');
-    divCamposEditarDados.classList.add('d-none');
-    divCamposConsultarVagaEstagio.classList.add('d-none');
-    divCamposSeguirEmpresa.classList.add('d-none');
-}
+
 
 function aoSelecionarSeguirEmpresa() {
-    divCamposSeguirEmpresa.classList.remove('d-none');
-    divCamposEditarDados.classList.add('d-none');
-    divCamposConsultarVagaEstagio.classList.add('d-none');
-    divCamposConsultarEmpresa.classList.add('d-none');
+    window.location.href = "http://localhost/EstagiarioController/seguirEmpresa";
 }
 
 function aoClicarAlterar() {
@@ -275,7 +264,6 @@ function aoClicarAlterar() {
         }
     });
 }
-
 </script>
 
 </html>

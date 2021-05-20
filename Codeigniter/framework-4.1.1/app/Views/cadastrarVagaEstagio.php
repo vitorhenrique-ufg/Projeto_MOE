@@ -190,10 +190,7 @@ input[type="radio"]:hover{
 						onclick="aoClicarBotaoVoltar()">
 				</div>
 			</div>
-			<span class="invalido d-none"><i class="fa fa-exclamation-triangle">Senhas Inválidas!</i></span>
-			<span class="diferente d-none"><i class="fa fa-exclamation-triangle">As duas senhas são
-					diferentes</i></span>
-			<span class="possui d-none"><i class="fa fa-exclamation-triangle">Usuário já possui cadastro</i></span>
+			
 		</form>
 	</div>
 </body>
@@ -215,7 +212,9 @@ input[type="radio"]:hover{
             }
         });
     }
-    
+    function aoClicarBotaoVoltar(){
+    	window.location.href = "http://localhost/EmpregadorController/index";
+    }
 	function aoClicarCadastrarVaga(){
 		$.ajax({
             type: "POST",

@@ -124,7 +124,7 @@
 			<li><a href="#">Estágio</a>
 				<ul>
 					<li><a href="http://localhost/EmpregadorController/cadastrarVagaEstagio">Cadastrar vaga</a></li>
-					<li><a href="#" onclick="aoSelecionarEditarVagasEstagio()">Editar vaga</a></li>
+					
 				</ul>
 			</li>
 			<li><a href="#" onclick="aoSelecionarConsultarEstagiario()">Estagiários</a></li>
