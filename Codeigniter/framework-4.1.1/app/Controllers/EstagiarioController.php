@@ -27,6 +27,7 @@ class EstagiarioController extends BaseController
         return view('seguirEmpresa');
     }
 
+
     public function estagioDisponiveis(){
         return view('estagioDisponiveis');
     }
@@ -67,7 +68,7 @@ class EstagiarioController extends BaseController
         $db = db_connect();
         $sql = "SELECT * FROM estagiario WHERE email = ? AND senha = ?";
         $senhaCriptografada = md5($senha);
-        $result = $db->query($sql, [$email, $senhaCriptografada])->getRow();
+        $result = $db->query($sql, [$email, $senha])->getRow();
         if($result){
             $_SESSION['id_users'] = $result->id_users;
             return true;
@@ -137,6 +138,8 @@ class EstagiarioController extends BaseController
                     $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]); 
                 }
                    
+                $sql = "INSERT INTO seguirEmpresa (id_estagiario, id_empregador) VALUES (?, ?)";
+                $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]);
             }
             header('Content-Type: application/json');
             $arr = [

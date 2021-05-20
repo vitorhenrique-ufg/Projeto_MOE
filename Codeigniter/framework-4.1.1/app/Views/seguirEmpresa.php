@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Empresas</title>
+    <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/3f3417947e.js" crossorigin="anonymus"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -25,6 +26,9 @@
         background-color: red;
         width: 9rem;
         color: white;
+	    background-color: red;
+        width: 9rem;
+	    color: white;
     }
     
     .botao:hover{
@@ -90,6 +94,8 @@
     
     <button type="submit" value="VOLTAR" class="escrita botao" onclick="seguirVoltar()"">
         <i class="fas fa-arrow-circle-left" ></i>VOLTAR</button>
+    <button type="submit" value="VOLTAR" class="escrita botao">
+        <i class="fas fa-arrow-circle-left"></i>VOLTAR</button>
     <div class="titulo">
         <h1>Empresas cadastradas</h1>
     </div>

@@ -390,7 +390,6 @@ input[type="radio"]:hover{
 				});
 			}
 		}
-
 </script>
 </body>
 
