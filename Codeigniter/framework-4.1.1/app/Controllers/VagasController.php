@@ -3,7 +3,10 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use CodeIgniter\API\ResponseTrait;
-use App\Models\EngenhariaSoftware;
+use App\Models\StrategyEngSoft;
+use App\Models\StrategyEngComp;
+use App\Models\StrategySisInf;
+
 global $id;
 
 if(defined('BASEPATH') && !$this->input->is_ajax_request()){
@@ -13,7 +16,6 @@ if(defined('BASEPATH') && !$this->input->is_ajax_request()){
 class VagasController extends BaseController
 {
     use ResponseTrait;
-    
 
     public function cadastrarVaga(){
         @session_start();
@@ -46,60 +48,127 @@ class VagasController extends BaseController
 
         $sql = "SELECT * FROM estagiario WHERE id_users = ?";
         $estagiario = $db->query($sql, [@$_SESSION['id_users']])->getRow();
+        $vagasSelecionadas = json_decode(@$_POST['jsonVagas'], true);
+        
         if($estagiario->curso == 'Engenharia de software'){
-            $engenhariaSoftware = new \App\Models\EngenhariaSoftware();
-            $estaAutorizado =  $engenhariaSoftware->interessarEmVaga($estagiario);
-            $vagasSelecionadas = json_decode(@$_POST['jsonVagas'], true);
-            if($estaAutorizado){
-                try{
-                    foreach($vagasSelecionadas as $vaga["Descricao"]){
-                        $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
-                        $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();
-                        
-                        if($vagaAssociada){
-                            $sql = "INSERT INTO seguirvaga (id_vaga, id_estagiario) VALUES (?, ?)";
-                            $db->query($sql, [$vagaAssociada->id_vaga, @$_SESSION['id_users']]); 
+            return $this->vagasEngenhariaSoftware($estagiario, $vagasSelecionadas);
+        }
+        else if($estagiario->curso == 'Engenharia da computação'){
+           return $this->vagasEngenhariaComputacao($estagiario, $vagasSelecionadas);
+        }else{
+           return $this->vagasSistemaInformacoes($estagiario, $vagasSelecionadas);
+        }
+    }
 
-                            header('Content-Type: application/json');
-                            $arr = [
-                                'sucesso' => 'vaga-seguida'
-                            ];
-                            return $this->respondCreated($arr);
-                        }else{
-                            header('Content-Type: application/json');
-                            $arr = [
-                                'sucesso' => false
-                            ];
-                            return $this->respondCreated($arr);
-                        }
+    function vagasEngenhariaSoftware($estagiario, $vagasSelecionadas){
+
+        $engenhariaSoftware = new \App\Models\StrategyEngSoft();
+        $estaAutorizado =  $engenhariaSoftware->interessarEmVaga($estagiario);
+
+        if($estaAutorizado){
+                foreach($vagasSelecionadas as $vaga["Descricao"]){
+                    $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
+                    $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();
+                    
+                    if($vagaAssociada){
+                        $sql = "INSERT INTO seguirvaga (id_vaga, id_estagiario) VALUES (?, ?)";
+                        $db->query($sql, [$vagaAssociada->id_vaga, @$_SESSION['id_users']]); 
+
+                        header('Content-Type: application/json');
+                        $arr = [
+                            'sucesso' => true
+                        ];
+                        return $this->respondCreated($arr);
                     }
                 }
-                catch(PDOException $e){
-                    header('Content-Type: application/json');
-                    $arr = [
-                        'sucesso' => false,
-                    ];
-                    return $this->respondCreated($arr);
-                }
-            }else{
                 header('Content-Type: application/json');
-                    $arr = [
-                        'sucesso' => 'nao-possui-integracao-necessaria',
-                    ];
-                    return $this->respondCreated($arr);
-            }
-        }else if($estagiario->curso == 'Engenharia da computação'){
-            header('Content-Type: application/json');
-            $arr = [
-                'sucesso' => 'teste2',
-            ];
-            return $this->respondCreated($arr);
+                $arr = [
+                    'sucesso' => false,
+                ];
+                return $this->respondCreated($arr);
         }else{
             header('Content-Type: application/json');
             $arr = [
-                'sucesso' => 'teste',
+                'sucesso' => false,
+                'curso' => 'EngenhariaSoftware'
             ];
             return $this->respondCreated($arr);
+        }
+    }
+
+    function vagasEngenhariaComputacao($estagiario, $vagasSelecionadas){
+
+        $engenhariaComputacao = new \App\Models\StrategyEngComp();
+        $estaAutorizado =  $engenhariaComputacao->interessarEmVaga($estagiario);
+
+        if($estaAutorizado){
+                foreach($vagasSelecionadas as $vaga["Descricao"]){
+                    $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
+                    $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();
+                    
+                    if($vagaAssociada){
+                        $sql = "INSERT INTO seguirvaga (id_vaga, id_estagiario) VALUES (?, ?)";
+                        $db->query($sql, [$vagaAssociada->id_vaga, @$_SESSION['id_users']]); 
+
+                        header('Content-Type: application/json');
+                        $arr = [
+                            'sucesso' => true
+                        ];
+                        return $this->respondCreated($arr);
+                    }
+                }
+                header('Content-Type: application/json');
+                $arr = [
+                    'sucesso' => false,
+                ];
+                return $this->respondCreated($arr);
+        }else{
+            header('Content-Type: application/json');
+            $arr = [
+                'sucesso' => false,
+                'curso' => 'EngenhariaComputacao'
+            ];
+            return $this->respondCreated($arr); 
+        }
+    }
+
+    function vagasSistemaInformacoes($estagiario, $vagasSelecionadas){
+
+        $sistemaInformacao = new \App\Models\StrategySisInf();
+        $estaAutorizado =  $sistemaInformacao->interessarEmVaga($estagiario);
+
+        if($estaAutorizado){
+            try{
+                foreach($vagasSelecionadas as $vaga["Descricao"]){
+                    $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
+                    $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();
+                    
+                    if($vagaAssociada){
+                        $sql = "INSERT INTO seguirvaga (id_vaga, id_estagiario) VALUES (?, ?)";
+                        $db->query($sql, [$vagaAssociada->id_vaga, @$_SESSION['id_users']]); 
+
+                        header('Content-Type: application/json');
+                        $arr = [
+                            'sucesso' => 'vaga-seguida'
+                        ];
+                        return $this->respondCreated($arr);
+                    }
+                }
+            }
+            catch(PDOException $e){
+                header('Content-Type: application/json');
+                $arr = [
+                    'sucesso' => false,
+                ];
+                return $this->respondCreated($arr);
+            }
+        }else{
+            header('Content-Type: application/json');
+            $arr = [
+                'sucesso' => false,
+                'curso' => 'SistemaInformacao'
+            ];
+            return $this->respondCreated($arr); 
         }
     }
 }

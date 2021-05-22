@@ -204,8 +204,18 @@
                 data: {jsonVagas},
                 success: function (result) {
                     if (result.sucesso) {
-                        alert('deu certo');
+                        alert('Inscrição realizada com sucesso!');
                         return;
+                    }else{
+                        if(result.curso == 'EngenhariaSoftware'){
+                            alert('Para o curso de Engenharia de software é necessário ter cursado entre 20 e 80% do curso!');
+                        }else if(result.curso == 'EngenhariaComputacao'){
+                            alert('Para o curso de Engenharia da computação é necessário ter cursado entre 40 e 80% do curso!');
+                        }else if(result.curso == 'SistemaInformacao'){
+                            alert('Para o curso de Sistemas de informações é necessário ter cursado entre 20 e 80% do curso!');
+                        }else{
+                            alert('Vagas não encontradas!');
+                        }
                     }
                 },
                 error: function (e1) {

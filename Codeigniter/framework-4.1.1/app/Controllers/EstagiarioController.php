@@ -68,7 +68,7 @@ class EstagiarioController extends BaseController
         $db = db_connect();
         $sql = "SELECT * FROM estagiario WHERE email = ? AND senha = ?";
         $senhaCriptografada = md5($senha);
-        $result = $db->query($sql, [$email, $senha])->getRow();
+        $result = $db->query($sql, [$email, $senhaCriptografada])->getRow();
         if($result){
             $_SESSION['id_users'] = $result->id_users;
             return true;

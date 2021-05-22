@@ -6,17 +6,15 @@ if(defined('BASEPATH') && !$this->input->is_ajax_request()){
     exit ('No direct script acess allowed in EstagiarioModel');   
 }
 
-interface IOfertarVaga{
-
+interface Strategy{
     public function interessarEmVaga($estagiario);
- 
 }
 
-class EngenhariaSoftware extends Model implements IOfertarVaga{
+class StrategyEngSoft extends Model implements Strategy{
     
     public function interessarEmVaga($estagiario){
         
-       if(2021 - $estagiario->ano > 0 || 2021 - $estagiario->ano > 4 ){
+       if(2021 - $estagiario->ano > 2 || 2021 - $estagiario->ano > 4 ){
             return true;
        }else{
             return false;
