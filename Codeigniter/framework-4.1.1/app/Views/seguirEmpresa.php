@@ -94,8 +94,6 @@
     
     <button type="submit" value="VOLTAR" class="escrita botao" onclick="seguirVoltar()"">
         <i class="fas fa-arrow-circle-left" ></i>VOLTAR</button>
-    <button type="submit" value="VOLTAR" class="escrita botao">
-        <i class="fas fa-arrow-circle-left"></i>VOLTAR</button>
     <div class="titulo">
         <h1>Empresas cadastradas</h1>
     </div>
@@ -110,7 +108,7 @@
             </tr>
         </thead>
     </table>
-    <button type="submit" value="VOLTAR" class="escrita botao-seguir" onclick="empresaParaSeguir()">
+    <button type="submit" value="SEGUIR" class="escrita botao-seguir" onclick="empresaParaSeguir()">
         <i class="fas fa-check-circle"></i>Seguir empresa(s) selecionada(s)</button>
 </body>
 

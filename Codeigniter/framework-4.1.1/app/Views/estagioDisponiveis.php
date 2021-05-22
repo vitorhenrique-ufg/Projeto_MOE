@@ -38,7 +38,6 @@
     }
 
     .tableHeader{
-        margin-left: 10rem;
         margin-top: 5rem;
     }
 
@@ -84,6 +83,23 @@
         font-size: 15pt
     }
 
+    .escrita.botao-seguir{
+        width: 21rem;
+        background: mediumblue;
+        color: white;
+        margin-left: 32rem;
+        margin-top: 2rem;
+    }
+
+    .escrita.botao-seguir i {
+        padding-right: 0.7rem;
+    }
+
+    .escrita.botao-seguir:hover{
+        background: green;
+        cursor: pointer;
+    }
+
 </style>
 
 <body>
@@ -106,6 +122,9 @@
             </tr>
         </thead>
     </table>
+
+    <button type="submit" value="SEGUIR" class="escrita botao-seguir" onclick="seInscrevaEmVagas()">
+        <i class="fas fa-check-circle"></i>Inscrever-se na(s) vaga(s)</button>
     
 </body>
 
@@ -115,6 +134,7 @@
         function seguirVoltar(){
             window.location.href = "http://localhost/EstagiarioController/index";
         }
+
         function obtenhaVagas(){
             $.ajax({
                 type: "POST",
@@ -149,10 +169,50 @@
                     row.appendChild(tableData);
                     body.appendChild(row);
                 }
-                
+                monteCheckInteressarEmVaga(row, body);
                 header.appendChild(body);
             });
-        }  
+        }
+        
+        function monteCheckInteressarEmVaga(row, body){
+            const input = document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            const label = document.createElement('label');
+            label.innerText = "Candidatar-se";
+
+            row.appendChild(input);
+            row.appendChild(label);
+            body.appendChild(row);
+        }
+
+        function seInscrevaEmVagas(){
+            const vagas = [];
+            const vagasSelecionadas = Array.from(document.querySelectorAll('tr input:checked'));
+            
+            vagasSelecionadas.forEach(el => {
+                const obj = {
+                    Descricao: el.parentElement.firstElementChild.textContent
+                };
+                vagas.push(obj);
+            });
+
+            const jsonVagas = JSON.stringify(vagas);
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/VagasController/seInscrevaEmVagas",
+                data: {jsonVagas},
+                success: function (result) {
+                    if (result.sucesso) {
+                        alert('deu certo');
+                        return;
+                    }
+                },
+                error: function (e1) {
+                    alert(e1.responseText);
+                }
+            }); 
+        }
 
 </script>
 

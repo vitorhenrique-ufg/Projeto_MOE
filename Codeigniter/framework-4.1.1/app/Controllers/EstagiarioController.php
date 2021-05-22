@@ -122,8 +122,7 @@ class EstagiarioController extends BaseController
         @session_start();
         $db = db_connect();
         $empresasSelecionadas = json_decode(@$_POST['jsonEmpresas'], true);
-        //unserialize(base64_decode(@$_POST['empresas']));
-      // var_dump($empresasSelecionadas[0]["Nome"]);
+
         try{
             foreach($empresasSelecionadas as $empresa["Nome"]){
                 $sqlEmpresasAssociadas = "SELECT * from empregador WHERE empresa = ?";
@@ -137,9 +136,6 @@ class EstagiarioController extends BaseController
                     $sql = "INSERT INTO seguirempresa (id_estagiario, id_empregador) VALUES (?, ?)";
                     $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]); 
                 }
-                   
-                $sql = "INSERT INTO seguirEmpresa (id_estagiario, id_empregador) VALUES (?, ?)";
-                $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]);
             }
             header('Content-Type: application/json');
             $arr = [

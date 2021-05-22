@@ -2,8 +2,11 @@
 
 namespace App\Controllers;
 use CodeIgniter\Controller;
+use CodeIgniter\Email\Email;
 use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\HTTP\RequestInterface;
 use App\Models;
+use Config;
 
 if(defined('BASEPATH') && !$this->input->is_ajax_request()){
     exit ('No direct script acess allowed in EstagiarioController');   
@@ -27,6 +30,7 @@ class CadastrarUsuarioController extends Controller
     }
 
     public function verificaCadastro(){
+		$this->enviarEmail();
     	$email = @$_POST['email'];
     	$senha = @$_POST['senha'];
 		/*var_dump($_POST['email']);
@@ -68,7 +72,7 @@ class CadastrarUsuarioController extends Controller
 											$ano, $curriculo,
 											$tipo]);
 
-						
+						$this->enviarEmail();
 						 $arr = [
 			                'sucesso' => true, 'mensagem' => 'Estagiario']; 
 			        	return $this->respondCreated($arr);
@@ -125,5 +129,28 @@ class CadastrarUsuarioController extends Controller
         }
     }
     
+	public function enviarEmail(){
+		helper(['form', 'email','validate']);
+		$email = \Config\Services::email();
+		$config['mailType'] = 'html';
+		$email->initialize($config);
+		$email->setFrom('projeto_moe@hotmail.com');
+		$email->setTo("vitorhfbc2@hotmail.com");
+		//$email->setCC('britobrito@discente.ufg.br');
+
+		$email->setSubject("Assunto teste");
 		
+		$email->setMessage("<!DOCTYPE html>
+			<head>
+				<meta charset='utf-8'>
+				<title>TESTE</title>
+	 		</head>
+			<body>
+				<p> OLÁ ESTOU TESTANDO ESSE EMAIL</p>
+			</body>
+		</html>");
+		
+		$email->send();
+		echo $email->printDebugger();
+	}
 }

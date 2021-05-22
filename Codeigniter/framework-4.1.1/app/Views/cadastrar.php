@@ -151,8 +151,20 @@ input[type="radio"]:hover{
 	padding-right: 8%;
 }
 
+.texto.curso{
+	margin-left: 16px;
+}
+
 .tiposUsuario{
 	margin-left:90px;
+}
+
+.dropdown-cursos{
+	border: groove;
+    border-color: dodgerblue;
+    border-radius: 5px;
+    width: 81%;
+	height: 36px;
 }
 
 </style>
@@ -185,8 +197,13 @@ input[type="radio"]:hover{
 						class="escrita generalInput">
 				</div>
 				<div>
-					<input type="text" name="curso" id="curso" placeholder="Curso" maxlength="50"
-						class="escrita generalInput">
+					<label for="curso" class="texto curso">Curso</label>
+					<select id="cursos-disponiveis" class="dropdown-cursos">
+						<option value="Selecione">Selecione</option>
+						<option value="Engenharia de software">Engenharia de software</option>
+						<option value="Engenharia da computação">Engenharia da computação</option>
+						<option value="Sistemas de informações">Sistemas de informações</option>
+					</select>					
 				</div>
 				<div>
 					<input type="text" name="ano" id="ano" placeholder="Ano de ingresso" class="escrita generalInput">
@@ -291,8 +308,6 @@ input[type="radio"]:hover{
 			const possui = document.querySelector('.possui');
 			const diferente = document.querySelector('.diferente');
 
-			
-
 			if (radioEstagiario.checked) {
 				debugger;
 				$.ajax({
@@ -304,7 +319,7 @@ input[type="radio"]:hover{
 						senha: document.getElementById('senha').value,
 						confirmasenha: document.getElementById('confirmasenha').value,
 						nome: document.getElementById('nome').value,
-						curso: document.getElementById('curso').value,
+						curso: document.getElementById('cursos-disponiveis').value,
 						ano: document.getElementById('ano').value,
 						curriculo: document.getElementById('curriculo').value,
 						tipo: "estagiario"
