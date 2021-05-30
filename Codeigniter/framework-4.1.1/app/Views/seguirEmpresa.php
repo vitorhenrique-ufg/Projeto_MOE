@@ -4,54 +4,40 @@
 <head>
     <meta charset="utf-8" />
     <title>Empresas</title>
-    <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/3f3417947e.js" crossorigin="anonymus"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
-
+ 
 <style>
     .escrita{
         height: 40px;
         width: 400px;
         margin: 5px;
-        border: 1px solid #0F6FC5;
+        border: 1px solid #eca6ff;
         font-size: 12pt;
         padding: 10px 20px;
         border-radius: 5px;
         font-family: Arial;
         font-weight: bold
     }
-    .botao{
-        background-color: red;
-        width: 9rem;
-        color: white;
-	    background-color: red;
-        width: 9rem;
-	    color: white;
-    }
-    
-    .botao:hover{
-        background-color: black;
-        color: white;
-        cursor: pointer;
-    }
 
     .escrita.botao i{
         padding-right: 0.7rem;
     }
 
-    .tableHeader{
-        margin-left: 10rem;
-        margin-top: 5rem;
+   .tableHeader{
+        margin-left: 2rem;
+       
     }
 
     .tableColumn{
         padding-right: 3rem;
+        padding-bottom: 1rem;
     }
     
     .tableColumnHeader{
-        padding-right: 13rem;
+        padding-right: 5rem;
         font-size: 14pt;
         font-weight: bold;
     }
@@ -62,9 +48,9 @@
 
     .escrita.botao-seguir{
         width: 21rem;
-        background: mediumblue;
+        background: #8303a3;
         color: white;
-        margin-left: 32rem;
+        margin-left: 16rem;
         margin-top: 2rem;
     }
 
@@ -73,7 +59,7 @@
     }
 
     .escrita.botao-seguir:hover{
-        background: green;
+        background: #eca6ff;
         cursor: pointer;
     }
 
@@ -81,43 +67,136 @@
         cursor:pointer;
     }
 
-    .titulo{
-        margin-left: 31rem;
-        text-decoration: underline;
-        color: blue;
-        font-size: 15pt
+
+    .link a {
+      font-weight: bold;
+      background: #f7f8f1;
+      padding: 6px;
+      color: #9600bf;
+      padding: 6px;
+      margin-left: 750px;
+      background: #f7f7f7;
+      border: 1px solid #eca6ff;
+     
+      -webkit-border-radius: 4px;
+      border-radius: 4px;  
+     
+      
     }
+     
+    .link a:hover {
+      color: #9600bf;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+    }
+
+
+    .content{
+      width: 80%;
+      min-height: 560px;    
+      margin: 0px auto;
+      position: relative;   
+    }
+
+    h1{
+   
+      color: #8303a3;
+      padding: 2px 0 10px 0;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 30px;
+    }
+
+    
+    h1:after{
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 10px;
+      background: -webkit-linear-gradient(left, rgba(181, 78, 204,0) 0%,rgba(181, 78, 204,0.8) 20%,rgba(181, 78, 204,1) 53%,rgba(181, 78, 204,0.8) 79%,rgba(181, 78, 204,0) 100%);
+    }
+
+    #estagiario{
+      position: absolute;
+      top: 0px;
+      width: 70%;   
+      padding: 18px 6% 5px 0;
+      margin: 35px 0 35px 100px;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+       
+      -webkit-box-shadow: 5px;
+      border-radius: 5px;
+       
+      -webkit-animation-duration: 0.5s;
+      -webkit-animation-timing-function: ease;
+      -webkit-animation-fill-mode: both;
+     
+      animation-duration: 0.5s;
+      animation-timing-function: ease;
+      animation-fill-mode: both;
+    }
+
+    .msg-erro{
+        color: green;
+        font-size: 18px;
+        margin-left: 20rem;
+    }
+    
+    .d-none{
+        display: none;
+    }
+
+    .fa.fa-check::before{
+        margin-right: 10px;
+    }
+
+    
 
 </style>
 
 <body>
-    
-    <button type="submit" value="VOLTAR" class="escrita botao" onclick="seguirVoltar()"">
-        <i class="fas fa-arrow-circle-left" ></i>VOLTAR</button>
-    <div class="titulo">
-        <h1>Empresas cadastradas</h1>
+  
+     <div class="container">
+        <div class="content">      
+            <div id="estagiario">
+                <form onsubmit="return false"> 
+                    <h1>Empresas cadastradas</h1> 
+                     <table class="tableHeader">
+                        <thead>
+                            <tr>
+                               <td class="tableColumnHeader">Nome</td>
+                                <td class="tableColumnHeader contato">Contato</td>
+                                <td class="tableColumnHeader">Endereço</td>
+                                <td class="tableColumnHeader">Descrição</td>
+                            </tr>
+                            </tr>
+                        </thead>
+                    </table>
+                    <span class="msg-erro d-none"><i class="fa fa-check">Empresas seguidas!</i></span> 
+                    <button type="submit" value="VOLTAR" class="escrita botao-seguir" onclick="empresaParaSeguir()">
+                        <i class="fas fa-check-circle"></i>Seguir empresa(s) selecionada(s)
+                    </button>
+                    <p class="link">
+                       
+                        <a href="http://localhost/EstagiarioController/index">Voltar</a>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <table class="tableHeader">
-        <thead>
-            <tr>
-                <td class="tableColumnHeader">Nome</td>
-                <td class="tableColumnHeader contato">Contato</td>
-                <td class="tableColumnHeader">Endereço</td>
-                <td class="tableColumnHeader">Descrição</td>
-            </tr>
-        </thead>
-    </table>
-    <button type="submit" value="SEGUIR" class="escrita botao-seguir" onclick="empresaParaSeguir()">
-        <i class="fas fa-check-circle"></i>Seguir empresa(s) selecionada(s)</button>
+
+   
+  
 </body>
 
 <script defer>
         obtenhaEmpresas();
 
-        function seguirVoltar(){
-            window.location.href = "http://localhost/EstagiarioController/index";
-        }
+        
         function obtenhaEmpresas(){
             $.ajax({
                 type: "POST",
@@ -172,6 +251,7 @@
         }
 
         function empresaParaSeguir(){
+            const mensagemErro = document.querySelector('.msg-erro');
             const empresas = [];
             const empresasSelecionadas = Array.from(document.querySelectorAll('tr input:checked'));
             
@@ -190,7 +270,7 @@
                 data: {jsonEmpresas},
                 success: function (result) {
                     if (result.sucesso) {
-                        alert('Empresas seguidas com sucesso!');
+                        mensagemErro.classList.remove('d-none');
                         return;
                     }
                 },

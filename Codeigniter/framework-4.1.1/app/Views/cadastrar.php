@@ -10,243 +10,363 @@
 </head>
 
 <style {csp-style-nonce}>
-    *{
-	    margin:0;
-	    padding:0;	
+	
+	*, *:before, *:after { 
+      margin:0;
+      padding:0;
+      font-family: Arial,sans-serif;
+    }
+   
+    a{
+      text-decoration: none;
+    }
+     
+  
+    a.links{
+      display: none;
     }
 
-    #principal{
-	    width: 420px;
-	    margin: 90px auto 0px auto;
+    .content{
+      width: 500px;
+      min-height: 560px;    
+      margin: 0px auto;
+      position: relative;   
     }
 
-    .login{
-	    width: 420px;
-	    margin: 100px auto 0px auto;
-	    border-radius: 10px;
-	    box-shadow: 0px 0px 10px;
+    h1{
+      
+      color: #8303a3;
+      padding: 2px 0 10px 0;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 30px;
     }
 
-    .login.form-cadastrar{
-	    width: 34%;
-	    margin-top: 3%;
+    h1:after{
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 10px;
+      background: -webkit-linear-gradient(left, rgba(181, 78, 204,0) 0%,rgba(181, 78, 204,0.8) 20%,rgba(181, 78, 204,1) 53%,rgba(181, 78, 204,0.8) 79%,rgba(181, 78, 204,0) 100%);
     }
 
-    .titulo{
-	    text-align: center;
-    	color:  #0F6FC5;
+    p{
+      margin-top: 5px;
+      margin-bottom:5px;
+    }
+     
+    .content p:first-child{
+      margin: 0px;
+    }
+     
+    label{
+      font-weight: bold;
+      color: #405c60;
+      position: relative;
     }
 
-    .escrita{
-        display: block;
-        height: 40px;
-        width: 400px;
-        margin: 5px;
-        border: 1px solid #0F6FC5;
-        font-size: 16pt;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-family: Arial;
-    }   
+    ::-webkit-input-placeholder  {
+      color: #bebcbc; 
+      font-style: italic;
+    }
+     
+    input:-moz-placeholder,
+    textarea:-moz-placeholder{
+      color: #bebcbc;
+      font-style: italic;
+    }
 
+    
+     
+    input:not([type="radio"]){
+      outline: none;
+      width: 95%;
+      margin-top: 4px;
+      padding: 10px;    
+      border: 1px solid #b2b2b2;
+     
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+     
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+      box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+     
+      -webkit-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+  
+    input[type="submit"]{
+      width: 100%!important;
+      cursor: pointer;  
+      background: #9900bf;
+      padding: 8px 5px;
+      color: #fff;
+      font-size: 20px;  
+      border: 1px solid #fff;   
+      margin-bottom: 10px;  
+      text-shadow: 0 1px 1px #333;
+     
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+     
+      transition: all 0.2s linear;
+    }
+    
+    .curso{
+      outline: none;
+      width: 100%;
+      margin-top: 4px;
+      padding: 10px;    
+      border: 1px solid #b2b2b2;
+     
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+     
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+      box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+     
+      -webkit-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+   
+    input[type="submit"]:hover{
+      background: #d27fe3;
+    }
 
-.escrita.generalInput{
-	height: 30%;
-	width: 85%;
-	background-color: white;
-}
+    .link{
+      position: absolute;
+      background: #eedcf5;
+      color: #7f7c7c;
+      left: 0px;
+      height: 20px;
+      width: 440px;
+      padding: 17px 30px 20px 30px;
+      font-size: 16px;
+      text-align: right;
+      border-top: 1px solid #dbe5e8;
+     
+      -webkit-border-radius: 0 0  5px 5px;
+      border-radius: 0 0  5px 5px;
+    }
+     
+    .link a {
+      font-weight: bold;
+      background: #f7f8f1;
+      padding: 6px;
+      color: #9600bf;
+      margin-left: 10px;
+      border: 1px solid #eca6ff;
+     
+      -webkit-border-radius: 4px;
+      border-radius: 4px;  
+     
+      -webkit-transition: all 0.4s linear;
+      transition: all 0.4s  linear;
+    }
+     
+    .link a:hover {
+      color: #9600bf;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+    }
 
+    #cadastro, 
+    #login{
+      position: absolute;
+      top: 0px;
+      width: 88%;   
+      padding: 18px 6% 60px 6%;
+      margin: 10px 0 35px 0;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+       
+      -webkit-box-shadow: 5px;
+      border-radius: 5px;
+       
+      -webkit-animation-duration: 0.5s;
+      -webkit-animation-timing-function: ease;
+      -webkit-animation-fill-mode: both;
+     
+      animation-duration: 0.5s;
+      animation-timing-function: ease;
+      animation-fill-mode: both;
+    }
+    .msg-erro{
+        color: red;
+        font-size: 18px;
+        margin-left: 132px;
+    }
+    
+    .d-none{
+        display: none;
+    }
 
-input[type="radio"]:hover{
-	cursor: pointer;
-}
+    .fa.fa-exclamation-triangle::before{
+        margin-right: 10px;
+    }  
 
-.perfil{
-  	border-radius: 50%;
-  	width: 20px;
-  	height: 20px;
-  	border: 2px solid #999;
-  	transition: 0.2s all linear;
-  	margin-right: 5px;
-  	position: relative;
-  	top: 4px;
-}
+	input[type="radio"]:hover{
+		cursor: pointer;
+	}
 
-.descricao{
-	display: block;
-	height: 80px;
-	width: 400px;
-	margin: 5px;
-	border: 1px solid #0F6FC5;
-	font-size: 16pt;
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-family: Arial;
-}
+	.perfil{
+	  	border-radius: 50%;
+	  	width: 20px;
+	  	height: 20px;
+	  	border: 2px solid #999;
+	  	transition: 0.2s all linear;
+	  	margin-right: 5px;
+	  	position: relative;
+	  	top: 4px;
+	}
 
-.alinharBotoes{
-	display: inline-flex;
-	margin-left: 5%;
-}
+	.possui{
+		color: red;
+		font-size: 18px;
+		margin-left: 115px;
+	}
 
-.invalido{
-	color: red;
-	font-size: 18px;
-	margin-left: 132px;
+	.invalido{
+		color: red;
+		font-size: 18px;
+		margin-left: 132px;
+	}
 
-}
+	.diferente{
+		color: red;
+		font-size: 18px;
+		margin-left: 97px;
+	}
 
-.d-none{
-	display: none;
-}
+	.texto.radioButton{
+		padding-right: 8%;
+	}
 
-.diferente{
-	color: red;
-	font-size: 18px;
-	margin-left: 97px;
+	.tiposUsuario{
+		margin-left:90px;
+	}
 
-}
-
-.possui{
-	color: red;
-	font-size: 18px;
-	margin-left: 112px;
-}
-
-.botao{
-	background-color: #0F6FC5;
-	color: white;
-}
-
-.botao.tela-cadastro{
-	background-color: #0F6FC5;
-	color: white;
-	width:200px;
-	height: 45px;
-}
-
-.botao.tela-cadastro:hover{
-	background-color: black;
-	color: white;
-	width:200px;
-    cursor:pointer;
-}
-
-.botao.voltar{
-	background:red;
-}
-
-.botao.voltar:hover{
-	background:black;
-    cursor:pointer;
-}
-
-.texto{
-	font-family: Arial;
-	font-size: 12pt;
-	font-weight: bold;
-}
-
-.texto.radioButton{
-	padding-right: 8%;
-}
-
-.texto.curso{
-	margin-left: 16px;
-}
-
-.tiposUsuario{
-	margin-left:90px;
-}
-
-.dropdown-cursos{
-	border: groove;
-    border-color: dodgerblue;
-    border-radius: 5px;
-    width: 81%;
-	height: 36px;
-}
+	.div-empregador, .div-estagiario{
+		margin-top: 15px;
+	}
 
 </style>
 
 <body>
-	<div id=" principal" class="login form-cadastrar">
+	<div class="container">
+        <div class="content">      
+            <div id="login">
+				<form onsubmit="return false">
+					<h1>Cadastro</h1>
+					<p> 
+		                <label for="email">E-mail:</label>
+		                <input id="email" name="email"  type="email" placeholder="lucas@gmail.com" required/>
+		            </p>
 
-		<form onsubmit="return false">
-			<h1 class="titulo">Informações para cadastro</h1>
-			<input type="email" class="escrita generalInput" id="email" name="email" placeholder="E-mail" required>
-				
-			<input type="password" id="senha" class="escrita generalInput" name="senha" placeholder="Senha"
-				maxlength="15" required>
-			<input type="password" id="confirmasenha" class="escrita generalInput" name="confirmasenha"
-				placeholder="Confirme a senha" maxlength="15">
+					<p> 
+                        <label for="senha">Senha:</label>
+                        <input id="senha" name="senha" type="password" placeholder="Sua senha" maxlength="15" required /> 
+                    </p>
 
-			<div class="tiposUsuario">
-				<input type="radio" id="tipo1" name="contact" value="estagiario" class="perfil"
-					onclick=aoSelecionarTipoUsuario()>
-				<label for="estagiario" class="texto radioButton">Estagiário</label>
+                    <p> 
+                        <label for="confirmasenha">Confirme a senha:</label>
+                        <input id="confirmasenha" name="confirmasenha" type="password" placeholder="Sua senha" maxlength="15" required /> 
+                    </p>
 
-				<input type="radio" id="tipo2" name="contact" value="empregador" class="perfil"
-					onclick=aoSelecionarTipoUsuario()>
-				<label for="empregador" class="texto ">Empregador</label>
+					
+
+					<div class="tiposUsuario">
+						<input type="radio" id="tipo1" name="contact" value="estagiario" class="perfil"
+							onclick=aoSelecionarTipoUsuario()>
+						<label for="estagiario" class="texto radioButton">Estagiário</label>
+
+						<input type="radio" id="tipo2" name="contact" value="empregador" class="perfil"
+							onclick=aoSelecionarTipoUsuario()>
+						<label for="empregador" class="texto ">Empregador</label>
+					</div>
+
+					<div class="div-estagiario">
+						<p> 
+			                <label for="nome">Nome completo:</label>
+			                <input id="nome" name="nome"  type="text" placeholder="Ex: Lucas Oliveira de Souza" maxlength="50" required/>
+			            </p>
+
+			            <p> 
+			                <label for="curso">Curso:</label>
+			                <select id="curso" name="curso" class="curso">
+			                	<option value="Engenharia de Software">
+			                		Engenharia de Software
+			                	</option>
+
+			                	<option value="Sistema de Informação">
+			                		Sistema de Informação
+			                	</option>
+
+			                	<option value="Engenharia de Computação">
+			                		Engenharia de Computação
+			                	</option>
+
+			                </select>
+			                
+			            </p>
+
+			            <p> 
+			                <label for="ano">Ano de ingresso:</label>
+			                <input id="ano" name="ano"  type="text" placeholder="Ex: 2019" maxlength="5" required/>
+			            </p>
+
+						<p> 
+			                <label for="curriculo">Curriculo:</label>
+			                <input id="curriculo" name="curriculo"  type="text" placeholder="Ex: Desenvolvedor" maxlength="5" required/>
+			            </p>
+						
+						
+					</div>
+
+					<div class="div-empregador">
+						<p> 
+			                <label for="empresa">Nome da empresa:</label>
+			                <input id="empresa" name="empresa"  type="text" placeholder="Ex: Totvs" maxlength="50" required/>
+			            </p>
+
+						<p> 
+			                <label for="contato">Contato:</label>
+			                <input id="contato" name="contato"  type="text" placeholder="Ex: Paulo" maxlength="50" required/>
+			            </p>
+
+			            <p> 
+			                <label for="endereco">Endereço:</label>
+			                <input id="endereco" name="endereco"  type="text" placeholder="Ex: Av. 2, 253, Marista" maxlength="50" required/>
+			            </p>
+
+						<p> 
+			                <label for="descricao">Descrição:</label>
+			                <input id="descricao" name="descricao"  type="text" placeholder="descreva a empresa" maxlength="50" required/>
+			            </p>
+
+
+					</div>
+
+					<span class="invalido d-none"><i class="fa fa-exclamation-triangle">Senhas Inválidas!</i></span>
+					<span class="diferente d-none"><i class="fa fa-exclamation-triangle">As duas senhas são
+							diferentes</i></span>
+					<span class="possui d-none"><i class="fa fa-exclamation-triangle">Usuário já possui cadastro</i></span>
+
+					<p> 
+                        <input type="submit" value="Entrar" onclick="aoClicarCadastrar()" /> 
+                    </p>
+
+
+					<p class="link">
+                        Já possui cadastro?
+                        <a href="http://localhost">Logar</a>
+                    </p>
+					
+				</form>
 			</div>
-
-			<div class="div-estagiario">
-				<div>
-					<input type="text" name="nome" id="nome" placeholder="Nome completo" maxlength="50"
-						class="escrita generalInput">
-				</div>
-				<div>
-					<label for="curso" class="texto curso">Curso</label>
-					<select id="cursos-disponiveis" class="dropdown-cursos">
-						<option value="Selecione">Selecione</option>
-						<option value="Engenharia de software">Engenharia de software</option>
-						<option value="Engenharia da computação">Engenharia da computação</option>
-						<option value="Sistemas de informações">Sistemas de informações</option>
-					</select>					
-				</div>
-				<div>
-					<input type="text" name="ano" id="ano" placeholder="Ano de ingresso" class="escrita generalInput">
-				</div>
-				<div>
-					<textarea name="curriculo" id="curriculo" placeholder="Curriculo" class="descricao"
-						maxlength="300"></textarea>
-				</div>
-			</div>
-
-			<div class="div-empregador">
-				<div>
-					<input type="text" name="empresa" id="empresa" placeholder="Nome da empresa"
-						class="escrita generalInput" maxlength="50">
-				</div>
-				<div>
-					<input type="text" name="contato" id="contato" placeholder="Nome do contato"
-						class="escrita generalInput" maxlength="50">
-				</div>
-				<div>
-					<input type="text" name="endereco" id="endereco" placeholder="Endereço" class="escrita generalInput"
-						maxlength="50">
-				</div>
-				<div>
-					<textarea name="descricao" id="descricao" placeholder="Descrição" class="descricao"
-						maxlength="50"></textarea>
-
-				</div>
-			</div>
-
-			<div>
-				<div class="alinharBotoes">
-					<input type="submit" value="Cadastrar" class="escrita botao tela-cadastro"
-						onclick="aoClicarCadastrar()">
-					<input type="submit" value="Voltar" class="escrita botao tela-cadastro voltar"
-						onclick="aoClicarBotaoVoltar()">
-				</div>
-			</div>
-			<span class="invalido d-none"><i class="fa fa-exclamation-triangle">Senhas Inválidas!</i></span>
-			<span class="diferente d-none"><i class="fa fa-exclamation-triangle">As duas senhas são
-					diferentes</i></span>
-			<span class="possui d-none"><i class="fa fa-exclamation-triangle">Usuário já possui cadastro</i></span>
-		</form>
+		<div>
 	</div>
 
 <script defer>
@@ -296,10 +416,7 @@ input[type="radio"]:hover{
 
 		}
 
-		function aoClicarBotaoVoltar() {
-			window.location.href = "http://localhost";
-		}
-
+		
 		function aoClicarCadastrar() {
 
 			const radioEstagiario = document.querySelector('input[id="tipo1"]');
@@ -307,6 +424,8 @@ input[type="radio"]:hover{
 			const invalido = document.querySelector('.invalido');
 			const possui = document.querySelector('.possui');
 			const diferente = document.querySelector('.diferente');
+
+			
 
 			if (radioEstagiario.checked) {
 				debugger;
@@ -319,7 +438,7 @@ input[type="radio"]:hover{
 						senha: document.getElementById('senha').value,
 						confirmasenha: document.getElementById('confirmasenha').value,
 						nome: document.getElementById('nome').value,
-						curso: document.getElementById('cursos-disponiveis').value,
+						curso: document.getElementById('curso').value,
 						ano: document.getElementById('ano').value,
 						curriculo: document.getElementById('curriculo').value,
 						tipo: "estagiario"
@@ -380,23 +499,23 @@ input[type="radio"]:hover{
 								possui.classList.add('d-none');
 								diferente.classList.add('d-none');
 								invalido.classList.remove('d-none');
-							} else if (result.mensagem == 'possui') {
+							}  
+							if (result.mensagem == 'possui') {
+								
 								invalido.classList.add('d-none');
 								diferente.classList.add('d-none');
 								possui.classList.remove('d-none');
-							} else {
+							} if (result.mensagem == 'diferente'){
 								possui.classList.add('d-none');
 								invalido.classList.add('d-none');
 								diferente.classList.remove('d-none');
 							}
 
 						}
-						if (result.sucesso == true) {
-
-							if (result.mensagem == 'Empregador') {
-								
-								window.location.href = "http://localhost";
-							}
+						
+						if (result.sucesso == true) {	
+							window.location.href = "http://localhost";
+							
 						} 
 					},
 					error: function (e1) {
@@ -405,6 +524,7 @@ input[type="radio"]:hover{
 				});
 			}
 		}
+
 </script>
 </body>
 

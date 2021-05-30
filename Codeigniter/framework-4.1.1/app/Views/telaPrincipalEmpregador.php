@@ -9,22 +9,15 @@
 <style {csp-style-nonce}>
 
     *{
-	    margin:0;
-	    padding:0;	
+        margin:0;
+        padding:0;  
     }
-
-    #principal{
-        width: 420px;
-        margin: 90px auto 0px auto;
-    }
-
     .menu-empregador{
         width: 100%;
-        height: 50px;
+        height: 47px;
         background: rgba(0, 0, 256, 0.1);
         font-family: 'Arial';
     }
-
     .menu-empregador ul{
         list-style: none;
         position: relative;
@@ -32,88 +25,164 @@
     .menu-empregador ul ul{
         visibility: hidden;
     }
-
     .menu-empregador ul li{
         width: 150px;
         float: left;
     }
-
     .menu-empregador ul li a {
         padding: 15px;
         display: block;
         text-decoration: none;
         text-align: center;
-        background-color: #0F6FC5;
+        background-color: #9900bf;
         color: white;
     }
     .menu-empregador ul li a:hover {
-        background-color: rgba(0, 0, 256, 0.2);
+        background-color: rgba(146, 0, 191, 0.2);
         color: black;
     }
-
     .menu-empregador ul li:hover ul{
         visibility: visible;
     }
-
-    .login{
-        width: 420px;
-        margin: 100px auto 0px auto;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px;
-    }
-
-    .campos-editar-dados{
-        height: 448px;
-        box-shadow: 0px 2px 8px darkblue;
-        border-radius:10px;
-    }
-
-    .titulo{
-        text-align: center;
-        color:  #0F6FC5;
-    }
-
-    .escrita{
-        display: block;
-        height: 40px;
-        width: 400px;
-        margin: 5px;
-        border: 1px solid #0F6FC5;
-        font-size: 16pt;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-family: Arial;
-    }
-
-    .descricao{
-        display: block;
-        height: 80px;
-        width: 400px;
-        margin: 5px;
-        border: 1px solid #0F6FC5;
-        font-size: 16pt;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-family: Arial;
-    }
-
+    
     .botao-editar{
-	    background-color: #0F6FC5;
-	    color: white;
-	    width:95%;
-	    height: 45px;
-	    margin-left:7px;
+        background-color: #0F6FC5;
+        color: white;
+        width:95%;
+        height: 45px;
+        margin-left:7px;
     }
-
     .botao-editar:hover{
-	    background-color: black;
-	    color: white;
-	    cursor:pointer;
+        background-color: black;
+        color: white;
+        cursor:pointer;
+    }
+    
+   
+    a{
+      text-decoration: none;
+    }
+     
+  
+    a.links{
+      display: none;
     }
 
-    .d-none{
-    	display: none;
+   
+    h1{
+      
+      color: #8303a3;
+      padding: 2px 0 10px 0;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 30px;
     }
+
+    h1:after{
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 10px;
+      background: -webkit-linear-gradient(left, rgba(181, 78, 204,0) 0%,rgba(181, 78, 204,0.8) 20%,rgba(181, 78, 204,1) 53%,rgba(181, 78, 204,0.8) 79%,rgba(181, 78, 204,0) 100%);
+    }
+
+    p{
+      margin-bottom:15px;
+    }
+     
+    
+     
+    label{
+      font-family: 'Arial';
+      font-weight: bold;
+      color: #405c60;
+      position: relative;
+    }
+
+    ::-webkit-input-placeholder  {
+      color: #bebcbc; 
+      font-family: 'Arial';
+      font-style: italic;
+    }
+     
+    input:-moz-placeholder,
+    textarea:-moz-placeholder{
+      color: #bebcbc;
+      font-style: italic;
+      font-family: 'Arial';
+    }
+
+    input {
+      font-family: 'Arial';
+      outline: none;
+      width: 95%;
+      margin-top: 4px;
+      padding: 10px;    
+      border: 1px solid #b2b2b2;
+     
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+     
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+      box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+     
+      -webkit-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+     
+  
+    input[type="submit"]{
+      width: 100%!important;
+      cursor: pointer;  
+      background: #9900bf;
+      padding: 8px 5px;
+      color: #fff;
+      font-size: 20px;  
+      border: 1px solid #fff;   
+      margin-bottom: 10px;  
+      text-shadow: 0 1px 1px #333;
+     
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+     
+      transition: all 0.2s linear;
+    }
+     
+   
+    input[type="submit"]:hover{
+      background: #d27fe3;
+    }
+     
+    #cadastro, 
+    #login{
+      position: relative;
+      top: 0px;
+      width: 400px;   
+      padding: 18px 1% 0px 1%;
+      margin: 10px 0 0px 400px;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+      border-radius: 5px;
+       
+    }
+
+
+    .msg-erro{
+        color: red;
+        font-size: 18px;
+        margin-left: 132px;
+    }
+    
+    .d-none{
+        display: none;
+    }
+
+    .fa.fa-exclamation-triangle::before{
+        margin-right: 10px;
+    }
+
 </style>
 
 <body>
@@ -131,95 +200,16 @@
 			<li><a href="http://localhost/EmpregadorController/encerreLogin"> Sair</a></li>
 		</ul>
 	</nav>
-	<div id="principal" class="login">
-		<form method="POST">
-
-			<div class="campos-editar-dados">
-				<h1 class="titulo">Informações cadastradas</h1>
-				<input type="email" class="escrita" id="email" name="email" placeholder="E-mail" maxlength="50" required>
-				<input type="password" class="escrita" id="senha" name="senha" placeholder="Senha" maxlength="15" required>
-				<input type="password" class="escrita" id="confirmasenha"  name="confirmasenha" placeholder="Confirme a senha"
-					maxlength="15" required="">
-
-				<div class="div-empregador">
-					<div>
-						<input type="text" name="empresa" id="empresa" placeholder="Nome da empresa" class="escrita" maxlength="50">
-					</div>
-					<div>
-						<input type="text" name="contato" id="contato" placeholder="Nome do contato" class="escrita" maxlength="50">
-					</div>
-					<div>
-						<input type="text" name="endereco" id="endereco" placeholder="Endereço" class="escrita" maxlength="50">
-					</div>
-					<div>
-						<textarea name="descricao" id="descricao" placeholder="Descrição" class="descricao" maxlength="50"></textarea>
-					</div>
-				</div>
-				<div>
-					<div>
-						<input type="submit" value="Editar" class="escrita botao-editar" onclick="aoClicarAlterar()">
-					</div>
-				</div>
-			</div>
-
-			<div class="campos-cadastrar-vaga">
-				<textarea placeholder="TELA DE CADASTRO VAGAS" class="descricao"></textarea>
-			</div>
-
-			<div class="campos-editar-vaga">
-				<textarea placeholder="TELA DE EDITAR VAGAS" class="descricao"></textarea>
-			</div>
-
-			<div class="campos-consultar-estagiarios">
-				<textarea placeholder="ESTAGIARIOS INTERESSADOS NAS VAGAS" class="descricao"></textarea>
-			</div>
-
-		</form>
-	</div>
+	
+	
 </body>
 
 <script defer>
 
-	const divCamposVagasEstagio = document.querySelector('.campos-cadastrar-vaga');
-	const divCamposEditarVaga = document.querySelector('.campos-editar-vaga');
-	const divCamposDadosCadastrados = document.querySelector('.campos-editar-dados');
-	const divCamposConsultaEstagiarios = document.querySelector('.campos-consultar-estagiarios');
 
-	escondaCamposAposCarregarTela();
-
-    function escondaCamposAposCarregarTela() {
-        divCamposVagasEstagio.classList.add('d-none');
-        divCamposEditarVaga.classList.add('d-none');
-        divCamposDadosCadastrados.classList.add('d-none');
-        divCamposConsultaEstagiarios.classList.add('d-none');
-    }
-
-    function aoSelecionarAlterarDados() {
-	$.ajax({
-		type: "POST",
-		url: "http://localhost/EmpregadorController/retornaInformacao",
-		data: {
-
-		},
-		success: function (result) {
-			if (result.sucesso == true) {
-
-				document.getElementById("email").value = result.email;
-				document.getElementById("empresa").value = result.empresa;
-				document.getElementById("contato").value = result.contato;
-				document.getElementById("endereco").value = result.endereco;
-				document.getElementById("descricao").value = result.descricao;
-			}
-
-		},
-		error: function (e1) {
-			alert("deu errado");
-		}
-	});
-	divCamposDadosCadastrados.classList.remove('d-none');
-	divCamposVagasEstagio.classList.add('d-none');
-	divCamposEditarVaga.classList.add('d-none');
-	divCamposConsultaEstagiarios.classList.add('d-none');
+function aoSelecionarAlterarDados() {
+	window.location.href = "http://localhost/EmpregadorController/atualiza";
+	
 }
 
 function aoClicarAlterar() {
@@ -237,7 +227,8 @@ function aoClicarAlterar() {
 		},
 		success: function (result) {
 			if (result.sucesso == true) {
-				alert("Dados alterados com sucesso!");
+				window.location.href = "http://localhost/EmpregadorController/index";
+				
 			} else {
 				if (result.mensagem == "diferente") {
 					alert("As senhas são diferentes.");
@@ -252,25 +243,11 @@ function aoClicarAlterar() {
 		}
 	});
 }
-function aoSelecionarVagasEstagio() {
-	divCamposVagasEstagio.classList.remove('d-none');
-	divCamposDadosCadastrados.classList.add('d-none');
-	divCamposEditarVaga.classList.add('d-none');
-	divCamposConsultaEstagiarios.classList.add('d-none');
-}
 
-function aoSelecionarEditarVagasEstagio() {
-	divCamposEditarVaga.classList.remove('d-none');
-	divCamposVagasEstagio.classList.add('d-none');
-	divCamposDadosCadastrados.classList.add('d-none');
-	divCamposConsultaEstagiarios.classList.add('d-none');
-}
+
 
 function aoSelecionarConsultarEstagiario() {
-	divCamposConsultaEstagiarios.classList.remove('d-none');
-	divCamposVagasEstagio.classList.add('d-none');
-	divCamposEditarVaga.classList.add('d-none');
-	divCamposDadosCadastrados.classList.add('d-none');
+	window.location.href = "http://localhost/EmpregadorController/estagiarios";
 }
 
 </script>

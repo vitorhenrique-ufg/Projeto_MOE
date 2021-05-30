@@ -30,24 +30,15 @@ class CadastrarUsuarioController extends Controller
     }
 
     public function verificaCadastro(){
-		$this->enviarEmail();
     	$email = @$_POST['email'];
     	$senha = @$_POST['senha'];
-		/*var_dump($_POST['email']);
-		var_dump($_POST['senha']);
-		var_dump($_POST['confirmasenha']);
-		var_dump($_POST['curso']);
-		var_dump($_POST['ano']);
-		var_dump($_POST['curriculo']);
-		var_dump($_POST['tipo']);*/	
 
     	$confirmaSenha = @$_POST['confirmasenha'];
     	$tipo = @$_POST['tipo'];
 
         if(!preg_match("/^[a-zA-Z'-]+$/", $senha)){
             if($senha == $confirmaSenha){
-            	if($tipo == 'estagiario'){
-                   
+            	if($tipo == 'estagiario'){ 
 
 			        header('Content-Type: application/json');
 			        
@@ -72,9 +63,10 @@ class CadastrarUsuarioController extends Controller
 											$ano, $curriculo,
 											$tipo]);
 
-						$this->enviarEmail();
+						$this->enviarEmailConfirmacao();
 						 $arr = [
-			                'sucesso' => true, 'mensagem' => 'Estagiario']; 
+			                'sucesso' => true, 'mensagem' => 'Estagiario'
+						]; 
 			        	return $this->respondCreated($arr);
 					}
 
@@ -103,12 +95,12 @@ class CadastrarUsuarioController extends Controller
 											$endereco, $descricao,
 											$tipo]);
 
-						
+						$this->enviarEmailConfirmacao();
 						 $arr = [
-			                'sucesso' => true, 'mensagem' => 'Empregador']; 
+			                'sucesso' => true, 'mensagem' => 'Empregador'
+						]; 
 			        	return $this->respondCreated($arr);
 					}
-                    
             	}
             }else{
             	header('Content-Type: application/json');
@@ -129,28 +121,31 @@ class CadastrarUsuarioController extends Controller
         }
     }
     
-	public function enviarEmail(){
-		helper(['form', 'email','validate']);
+	public function enviarEmailConfirmacao(){
+		//helper('email');
 		$email = \Config\Services::email();
 		$config['mailType'] = 'html';
 		$email->initialize($config);
+
 		$email->setFrom('projeto_moe@hotmail.com');
 		$email->setTo("vitorhfbc2@hotmail.com");
-		//$email->setCC('britobrito@discente.ufg.br');
 
-		$email->setSubject("Assunto teste");
-		
+		$email->setSubject("Confirmação de email");
+		//var_dump($email);
 		$email->setMessage("<!DOCTYPE html>
 			<head>
 				<meta charset='utf-8'>
-				<title>TESTE</title>
+				<title>MOE</title>
 	 		</head>
 			<body>
-				<p> OLÁ ESTOU TESTANDO ESSE EMAIL</p>
+				<p> Olá, você se cadastrou no Mural de oportunidades de estágio
+				da UFG, clique no link abaixo para confirmar seu login.
+				</p>
+				<a href='http://localhost'>Mural de oportunidades de estágio UFG</a>
 			</body>
 		</html>");
 		
-		$email->send();
-		echo $email->printDebugger();
+		var_dump($email->send());
+		//echo $email->printDebugger();
 	}
 }

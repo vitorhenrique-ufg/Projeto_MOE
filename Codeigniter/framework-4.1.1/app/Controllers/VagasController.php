@@ -23,7 +23,7 @@ class VagasController extends BaseController
 
         header('Content-Type: application/json');
         $descricao = @$_POST['descricao'];
-		$atividade = @$_POST['atividade'];
+		$atividade = @$_POST['atividade'];  
 		$semestre = @$_POST['semestre'];
 		$habilidadesRequiridas = @$_POST['habilidadesRequiridas'];
 		$horasSemanais = @$_POST['horasSemanais'];
@@ -36,6 +36,8 @@ class VagasController extends BaseController
         $result = $db->query($sql, [$descricao, $atividade, $semestre, $habilidadesRequiridas, 
                                 $horasSemanais, $remuneracao, $idEmpregador]);
         
+        $empregador = new \App\Models\Empregador();
+        $empregador->enviarEmail($idEmpregador);                          
         $arr = [
                 'sucesso' => true,
                ]; 

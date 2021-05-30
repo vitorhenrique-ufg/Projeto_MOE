@@ -18,9 +18,18 @@ class EmpregadorController extends BaseController
         return view('telaPrincipalEmpregador');
     }
 
+    public function atualiza(){
+        return view('atualizaEmpregador');
+    }
+
     public function encerreLogin(){
         return view('login');
     }
+
+    public function estagiarios(){
+        return view('estagiariosInteressados');
+    }
+
     
     public function cadastrarVagaEstagio(){
         return view('cadastrarVagaEstagio');
@@ -97,18 +106,27 @@ class EmpregadorController extends BaseController
                 $sql->execute();*/
 
                 header('Content-Type: application/json');
-                $arr = array('sucesso' => true, 'mensagem' => "cadastrado" );
-                echo json_encode($arr);
-
+                $arr = [
+                    'sucesso' => true,
+                    'mensagem' => "cadastrado"
+                ];
+                return $this->respondCreated($arr);
+                
             }else{
-                header('Content-Type: application/json');
-                $arr = array('sucesso' => false, 'mensagem' => "diferente" );
-                echo json_encode($arr);
+                 header('Content-Type: application/json');
+                $arr = [
+                    'sucesso' => false,
+                    'mensagem' => "diferente"
+                ];
+                return $this->respondCreated($arr);;
             }
         }else{
             header('Content-Type: application/json');
-            $arr = array('sucesso' => false, 'mensagem' => "possui" );
-            echo json_encode($arr);
+            $arr = [
+                'sucesso' => false,
+                'mensagem' => "possui"
+            ];
+            return $this->respondCreated($arr);
         }
     }
 
@@ -123,6 +141,22 @@ class EmpregadorController extends BaseController
             $array = [
                 'sucesso' => true,
                 'empresas' => $result
+            ];
+            return $this->respondCreated($array);
+        }
+    }
+
+    public function estagiariosInteressados(){
+        @session_start();
+        $db = db_connect();
+        $sql = "SELECT nome, curso, ano, curriculo FROM estagiario, seguirempresa WHERE id_users = id_estagiario AND id_empregador = ?";
+        $result = $db->query($sql, [@$_SESSION['id_users']])->getResultArray();
+        //var_dump($result);
+        if($result){
+            header('Content-Type: application/json');
+            $array = [
+                'sucesso' => true,
+                'vagas' => $result
             ];
             return $this->respondCreated($array);
         }

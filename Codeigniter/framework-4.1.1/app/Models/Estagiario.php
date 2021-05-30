@@ -7,7 +7,7 @@ if(defined('BASEPATH') && !$this->input->is_ajax_request()){
 
 use CodeIgniter\Model;
 
-class Estagiario extends Model{
+class Estagiario extends Model implements Observer{
     
 		private $email; 
 		private $senha;

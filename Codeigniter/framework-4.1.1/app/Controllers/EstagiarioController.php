@@ -19,6 +19,10 @@ class EstagiarioController extends BaseController
         return view('telaPrincipalEstagiario');
     }
 
+    public function atualiza(){
+        return view('atualizaEstagiario');
+    }
+
     public function encerreLogin(){
         return view('login');
     }
@@ -26,7 +30,6 @@ class EstagiarioController extends BaseController
     public function seguirEmpresa(){
         return view('seguirEmpresa');
     }
-
 
     public function estagioDisponiveis(){
         return view('estagioDisponiveis');
@@ -135,7 +138,7 @@ class EstagiarioController extends BaseController
                 if($result == 0){
                     $sql = "INSERT INTO seguirempresa (id_estagiario, id_empregador) VALUES (?, ?)";
                     $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]); 
-                }
+                }       
             }
             header('Content-Type: application/json');
             $arr = [

@@ -10,189 +10,248 @@
 </head>
 
 <style {csp-style-nonce}>
-    *{
-	    margin:0;
-	    padding:0;	
+    *, *:before, *:after { 
+      margin:0;
+      padding:0;
+      font-family: Arial,sans-serif;
+    }
+   
+    a{
+      text-decoration: none;
+    }
+     
+  
+    a.links{
+      display: none;
     }
 
-    #principal{
-	    width: 420px;
-	    margin: 90px auto 0px auto;
+    .content{
+      width: 500px;
+      min-height: 560px;    
+      margin: 0px auto;
+      position: relative;   
     }
 
-    .login{
-	    width: 420px;
-	    margin: 100px auto 0px auto;
-	    border-radius: 10px;
-	    box-shadow: 0px 0px 10px;
+    h1{
+   
+      color: #8303a3;
+      padding: 2px 0 10px 0;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      text-align: center;
+      padding-bottom: 30px;
     }
 
-    .login.form-cadastrar{
-	    width: 34%;
-	    margin-top: 3%;
+    h1:after{
+      content: ' ';
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin-top: 10px;
+      background: -webkit-linear-gradient(left, rgba(181, 78, 204,0) 0%,rgba(181, 78, 204,0.8) 20%,rgba(181, 78, 204,1) 53%,rgba(181, 78, 204,0.8) 79%,rgba(181, 78, 204,0) 100%);
     }
 
-    .titulo{
-	    text-align: center;
-    	color:  #0F6FC5;
+    p{
+      margin-bottom:15px;
+    }
+     
+    .content p:first-child{
+      margin: 0px;
+    }
+     
+    label{
+      font-weight: bold;
+      color: #405c60;
+      position: relative;
     }
 
-    .escrita{
-        display: block;
-        height: 40px;
-        width: 400px;
-        margin: 5px;
-        border: 1px solid #0F6FC5;
-        font-size: 16pt;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-family: Arial;
-    }   
+    ::-webkit-input-placeholder  {
+      color: #bebcbc; 
+      font-style: italic;
+    }
+     
+    input:-moz-placeholder,
+    textarea:-moz-placeholder{
+      color: #bebcbc;
+      font-style: italic;
+    }
 
+    input {
+      outline: none;
+      width: 95%;
+      margin-top: 4px;
+      padding: 10px;    
+      border: 1px solid #b2b2b2;
+     
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+     
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+      box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+     
+      -webkit-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+     
+  
+    input[type="submit"]{
+      width: 100%!important;
+      cursor: pointer;  
+      background: #9900bf;
+      padding: 8px 5px;
+      color: #fff;
+      font-size: 20px;  
+      border: 1px solid #fff;   
+      margin-bottom: 10px;  
+      text-shadow: 0 1px 1px #333;
+     
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+     
+      transition: all 0.2s linear;
+    }
+     
+   
+    input[type="submit"]:hover{
+      background: #d27fe3;
+    }
 
-.escrita.generalInput{
-	height: 30%;
-	width: 85%;
-	background-color: white;
-}
+    .link{
+      position: absolute;
+      background: #eedcf5;
+      color: #7f7c7c;
+      left: 0px;
+      height: 20px;
+      width: 440px;
+      padding: 17px 30px 20px 30px;
+      font-size: 16px;
+      text-align: right;
+      border-top: 1px solid #dbe5e8;
+     
+      -webkit-border-radius: 0 0  5px 5px;
+      border-radius: 0 0  5px 5px;
+    }
+     
+    .link a {
+      font-weight: bold;
+      background: #f7f8f1;
+      padding: 6px;
+      color: #9600bf;
+      margin-left: 10px;
+      border: 1px solid #eca6ff;
+     
+      -webkit-border-radius: 4px;
+      border-radius: 4px;  
+     
+      -webkit-transition: all 0.4s linear;
+      transition: all 0.4s  linear;
+    }
+     
+    .link a:hover {
+      color: #9600bf;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+    }
 
+    #cadastro, 
+    #login{
+      position: absolute;
+      top: 0px;
+      width: 88%;   
+      padding: 18px 6% 60px 6%;
+      margin: 10px 0 35px 0;
+      background: #f7f7f7;
+      border: 1px solid #9600bf;
+       
+      -webkit-box-shadow: 5px;
+      border-radius: 5px;
+       
+      
+    }
 
-input[type="radio"]:hover{
-	cursor: pointer;
-}
+    
+  	.hora{
+      outline: none;
+      width: 100%;
+      margin-top: 4px;
+      padding: 10px;    
+      border: 1px solid #b2b2b2;
+     
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+     
+      -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+      box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+     
+      -webkit-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
 
-.perfil{
-  	border-radius: 50%;
-  	width: 20px;
-  	height: 20px;
-  	border: 2px solid #999;
-  	transition: 0.2s all linear;
-  	margin-right: 5px;
-  	position: relative;
-  	top: 4px;
-}
-
-.descricao{
-	display: block;
-	height: 80px;
-	width: 400px;
-	margin: 5px;
-	border: 1px solid #0F6FC5;
-	font-size: 16pt;
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-family: Arial;
-}
-
-.alinharBotoes{
-	display: inline-flex;
-	margin-left: 5%;
-}
-
-.invalido{
-	color: red;
-	font-size: 18px;
-	margin-left: 132px;
-
-}
-
-.d-none{
-	display: none;
-}
-
-.diferente{
-	color: red;
-	font-size: 18px;
-	margin-left: 97px;
-
-}
-
-.possui{
-	color: red;
-	font-size: 18px;
-	margin-left: 112px;
-}
-
-.botao{
-	background-color: #0F6FC5;
-	color: white;
-}
-
-.botao.tela-cadastro{
-	background-color: #0F6FC5;
-	color: white;
-	width:200px;
-	height: 45px;
-}
-
-.botao.tela-cadastro:hover{
-	background-color: black;
-	color: white;
-	width:200px;
-    cursor:pointer;
-}
-
-.botao.voltar{
-	background:red;
-}
-
-.botao.voltar:hover{
-	background:black;
-    cursor:pointer;
-}
-
-.texto{
-	font-family: Arial;
-	font-size: 12pt;
-	font-weight: bold;
-}
-
-.texto.radioButton{
-	padding-right: 8%;
-}
-
-.tiposUsuario{
-	margin-left:90px;
-}
 
 </style>
 
 <body>
-	<div id=" principal" class="login form-cadastrar">
+	<div class="container">
+        <div class="content">      
+            <div id="login">
+                <form onsubmit="return false"> 
+                    <h1>Cadastrar vaga de estágio</h1> 
+                    <p> 
+                        <label for="descricaoVaga">Descricao:</label>
+                        <input id="descricaoVaga" name="descricaoVaga"  type="text" placeholder="Descreva a vaga" required/>
+                    </p>
+                    
+                    <p> 
+                        <label for="listaAtividades">Lista de atividades:</label>
+                        <input id="listaAtividades" name="listaAtividades"  type="text" placeholder="Listar atividades" required/>
+                    </p>
 
-		<form onsubmit="return false">
-			<h1 class="titulo">Cadastro de vaga de estágio</h1>
-			<div>
-                <textarea name="descricaoVaga" id="descricaoVaga" placeholder="Descrição da vaga" class="descricao"
-						maxlength="300" required></textarea>
+                    <p> 
+                        <label for="habilidadesRequeridas">Habilidades Requiridas:</label>
+                        <input id="habilidadesRequeridas" name="habilidadesRequeridas"  type="text" placeholder="Descreva as habilidades requeridas" required/>
+                    </p>
+
+                    <p> 
+                        <label for="semestre">Semestre requerido:</label>
+                        <input id="semestre" name="semestre"  type="text" placeholder="Semestre" required/>
+                    </p>   
+
+                    <p> 
+			            <label for="horas">Carga horária:</label>
+			            <select id="horas" name="horas" class="hora">
+			                <option value="20">
+			                	20 horas
+			                </option>
+			                <option value="30">
+			                	30 horas
+			                </option>
+
+			                
+
+			                	
+			            </select>
+			                
+			        </p>
+                    <p> 
+                        <label for="remuneracaoVaga">Remuneração:</label>
+                        <input id="remuneracaoVaga" name="remuneracaoVaga"  type="text" placeholder="Remuneração" required/>
+                    </p>
+
+                    
+                    
+                    <p> 
+                        <input type="submit" value="Cadastrar" onclick="aoClicarCadastrarVaga()" /> 
+                    </p>
+                       
+                    <p class="link">
+                        Cancelar cadastro de vaga?
+                        <a href="http://localhost/EmpregadorController/index">Voltar</a>
+                    </p>
+                </form>
             </div>
-            <div>
-                <textarea name="listaAtividades" id="listaAtividades" placeholder="Lista de atividades" class="descricao"
-						maxlength="300" required></textarea>
-            </div>
-            <div>
-                <textarea name="listaAtividades" id="habilidadesRequeridas" placeholder="Habilidades requeridas" class="descricao"
-						maxlength="300" required></textarea>
-            </div>
-            <div>
-                <input type="text" class="escrita generalInput" id="semestre" placeholder="Semestre do curso" required>
-            </div>
-            <div>
-                <input type="timed" class="escrita generalInput" id="horas" placeholder="Quantidade de horas" required>
-            </div>
-            <div>
-                <input type="number" id="remuneracaoVaga" class="escrita generalInput" id="remuneracao" placeholder="Remuneração" required>
-            </div>
-				<div class="alinharBotoes">
-					<input type="submit" value="Cadastrar" class="escrita botao tela-cadastro"
-						onclick="aoClicarCadastrarVaga()">
-					<input type="submit" value="Voltar" class="escrita botao tela-cadastro voltar"
-						onclick="aoClicarBotaoVoltar()">
-				</div>
-			</div>
-			
-		</form>
-	</div>
+        </div>
+    </div>
+	
 </body>
 
 <script defer>
@@ -212,9 +271,7 @@ input[type="radio"]:hover{
             }
         });
     }
-    function aoClicarBotaoVoltar(){
-    	window.location.href = "http://localhost/EmpregadorController/index";
-    }
+    
 	function aoClicarCadastrarVaga(){
 		$.ajax({
             type: "POST",
@@ -222,8 +279,8 @@ input[type="radio"]:hover{
             data: { 
 				descricao: document.getElementById('descricaoVaga').value, 
 				atividade: document.getElementById('listaAtividades').value,
-				semestre: document.getElementById('habilidadesRequeridas').value,
-				habilidadesRequiridas: document.getElementById('semestre').value,
+				semestre: document.getElementById('semestre').value,
+				habilidadesRequiridas: document.getElementById('habilidadesRequeridas').value,
 				horasSemanais: document.getElementById('horas').value,
 				remuneracao: document.getElementById('remuneracaoVaga').value
 			},
