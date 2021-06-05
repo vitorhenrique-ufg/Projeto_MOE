@@ -315,7 +315,6 @@ function aoClicarAlterar() {
 					invalido.classList.remove('d-none');
 				}
 			}
-
 		},
 		error: function (e1) {
 			alert("deu errado");

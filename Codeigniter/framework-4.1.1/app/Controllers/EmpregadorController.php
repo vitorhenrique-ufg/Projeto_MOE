@@ -94,16 +94,6 @@ class EmpregadorController extends BaseController
                 $descricao = @$_POST['descricao'];
                 $id = @$_SESSION['id_users'];
                 $result = $db->query($sql, [$empresa, $email, $senhaCriptografada, $contato, $endereco, $descricao, $id])->getRow();
-               /* $pdo = new PDO("mysql:dbname="."projeto_login".";host="."localhost","root","");
-                $sql = $pdo->prepare("UPDATE empregador SET empresa = :m,email = :e,senha = :s,contato = :c,endereco = :n,descricao = :d  WHERE id_users = :id");
-                $sql->bindValue(":m",@$_POST['empresa']);
-                $sql->bindValue(":e",@$_POST['email']);
-                $sql->bindValue(":s",md5(@$_POST['senha']));
-                $sql->bindValue(":c",@$_POST['contato']);
-                $sql->bindValue(":n",@$_POST['endereco']);
-                $sql->bindValue(":d",@$_POST['descricao']);
-                $sql->bindValue(":id",$_SESSION['id_users']);
-                $sql->execute();*/
 
                 header('Content-Type: application/json');
                 $arr = [

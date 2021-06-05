@@ -176,7 +176,7 @@
                         </thead>
                     </table>
                     <span class="msg-erro d-none"><i class="fa fa-check">Empresas seguidas!</i></span> 
-                    <button type="submit" value="VOLTAR" class="escrita botao-seguir" onclick="empresaParaSeguir()">
+                    <button type="submit" value="Seguir" class="escrita botao-seguir" onclick="empresaParaSeguir()">
                         <i class="fas fa-check-circle"></i>Seguir empresa(s) selecionada(s)
                     </button>
                     <p class="link">
@@ -195,7 +195,6 @@
 
 <script defer>
         obtenhaEmpresas();
-
         
         function obtenhaEmpresas(){
             $.ajax({
@@ -255,6 +254,11 @@
             const empresas = [];
             const empresasSelecionadas = Array.from(document.querySelectorAll('tr input:checked'));
             
+            if(empresasSelecionadas.length == 0){
+                alert('É preciso selecionar ao menos uma empresa para seguir!');
+                return;
+            }
+
             empresasSelecionadas.forEach(el => {
                 const obj = {
                     Nome: el.parentElement.firstElementChild.textContent
@@ -263,7 +267,6 @@
             });
 
             const jsonEmpresas = JSON.stringify(empresas);
-            debugger;
             $.ajax({
                 type: "POST",
                 url: "http://localhost/EstagiarioController/seguirEmpresasSelecionadas",

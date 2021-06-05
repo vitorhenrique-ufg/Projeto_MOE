@@ -225,10 +225,6 @@
 			                <option value="30">
 			                	30 horas
 			                </option>
-
-			                
-
-			                	
 			            </select>
 			                
 			        </p>

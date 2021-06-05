@@ -30,6 +30,7 @@ class CadastrarUsuarioController extends Controller
     }
 
     public function verificaCadastro(){
+		header('Content-Type: application/json');
     	$email = @$_POST['email'];
     	$senha = @$_POST['senha'];
 
@@ -54,7 +55,8 @@ class CadastrarUsuarioController extends Controller
 
 					if($result){
 						 $arr = [
-			                'sucesso' => false, 'mensagem' => 'possui']; 
+			                'sucesso' => false, 
+							'mensagem' => "possui"]; 
 			        		return $this->respondCreated($arr);
 					}else{
 						$sql = "INSERT INTO estagiario(nome,email,senha,curso,ano,curriculo,tipo) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -62,10 +64,11 @@ class CadastrarUsuarioController extends Controller
 											md5($senha), $curso,
 											$ano, $curriculo,
 											$tipo]);
-
-						$this->enviarEmailConfirmacao();
+						$this->enviarEmailConfirmacao($email);
+						header('Content-Type: application/json');
 						 $arr = [
-			                'sucesso' => true, 'mensagem' => 'Estagiario'
+			                'sucesso' => true, 
+							'mensagem' => "Estagiario"
 						]; 
 			        	return $this->respondCreated($arr);
 					}
@@ -95,7 +98,7 @@ class CadastrarUsuarioController extends Controller
 											$endereco, $descricao,
 											$tipo]);
 
-						$this->enviarEmailConfirmacao();
+						$this->enviarEmailConfirmacao($email);
 						 $arr = [
 			                'sucesso' => true, 'mensagem' => 'Empregador'
 						]; 
@@ -121,7 +124,7 @@ class CadastrarUsuarioController extends Controller
         }
     }
     
-	public function enviarEmailConfirmacao(){
+	public function enviarEmailConfirmacao($emailConfirmacao){
 		//helper('email');
 		$email = \Config\Services::email();
 		$config['mailType'] = 'html';
@@ -129,9 +132,9 @@ class CadastrarUsuarioController extends Controller
 
 		$email->setFrom('projeto_moe@hotmail.com');
 		$email->setTo("vitorhfbc2@hotmail.com");
+		//$email->setTo($emailConfirmacao);
 
 		$email->setSubject("Confirmação de email");
-		//var_dump($email);
 		$email->setMessage("<!DOCTYPE html>
 			<head>
 				<meta charset='utf-8'>
@@ -145,7 +148,7 @@ class CadastrarUsuarioController extends Controller
 			</body>
 		</html>");
 		
-		var_dump($email->send());
+		$email->send();
 		//echo $email->printDebugger();
 	}
 }

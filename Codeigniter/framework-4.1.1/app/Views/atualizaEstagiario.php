@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Login Estagiario</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -237,6 +238,10 @@
                             <label for="curriculo">Curriculo:</label>
                             <input id="curriculo" name="curriculo"  type="curriculo" required/>
                         </p>
+                        <span class="invalido d-none"><i class="fa fa-exclamation-triangle">Senhas Inválidas!</i></span>
+					            	<span class="diferente d-none"><i class="fa fa-exclamation-triangle">As duas senhas são
+							          	diferentes</i>
+                        </span>
                         <p> 
                             <input type="submit" value="Alterar" onclick="aoClicarAlterar()" /> 
                         </p>
@@ -276,6 +281,9 @@ function aoSelecionarAlterarDadosEstagiario() {
 }
 
 function aoClicarAlterar() {
+  const invalido = document.querySelector('.invalido');
+	const diferente = document.querySelector('.diferente');
+
     $.ajax({
         type: "POST",
         url: "http://localhost/EstagiarioController/atualizaEstagiario",
@@ -293,9 +301,11 @@ function aoClicarAlterar() {
                 window.location.href = "http://localhost/EstagiarioController/index";
             } else {
                 if (result.mensagem == "diferente") {
-                    alert("As senhas são diferentes.");
+                  invalido.classList.add('d-none');
+					        diferente.classList.remove('d-none'); 
                 } else if (result.mensagem == "possui") {
-                    alert("A senha deve contar pelo menos um caracter especial.");
+                  diferente.classList.add('d-none');
+					        invalido.classList.remove('d-none');
                 }
             }
         },

@@ -1,16 +1,13 @@
 <?php
 namespace App\Models;
-
+use CodeIgniter\Model;
 if(defined('BASEPATH') && !$this->input->is_ajax_request()){
     exit ('No direct script acess allowed in EmpregadorModel');   
 }
 
-use CodeIgniter\Model;
-use \App\Models\Subject;
-
 interface Subject{
-    public function addObserver();
-    public function removeObserver();
+    public function addObserver($idEstagiario, $idEmpregador);
+    public function removeObserver($idEstagiario);
     public function enviarEmail($idEmpregador);
 }
 
@@ -24,16 +21,6 @@ class Empregador extends Model implements Subject{
 		private $nomeContato;
 		private $endereco;
 		private $descricao;
-
-		// public function __construct($email, $senha, $empresa, $contato, $endereco, $descricao, $tipo){
-		// 	$this->email = $email;
-		// 	$this->senha = $senha;
-		// 	$this->nomeContato = $contato;
-		// 	$this->endereco = $endereco;
-		// 	$this->nomeEmpresa = $empresa;
-		// 	$this->descricao = $descricao;
-		// 	$this->tipoUsuario = $tipo;
-		// }
 
 		public function obtenhaEmail(){
 			return $this->email;
@@ -63,10 +50,16 @@ class Empregador extends Model implements Subject{
 			return $this->descricao;
 		}
 
-		public function addObserver(){
+		public function addObserver($idEstagiario, $idEmpregador){
+			$db = db_connect();
+			$sql = "INSERT INTO seguirEmpresa(id_estagiario, id_empregador) VALUES (?, ?)";
+			$db->query($sql, [$idEstagiario, $idEmpregador]);
 			return true;
 		}
-		public function removeObserver(){
+		public function removeObserver($idEstagiario){
+			$db = db_connect();
+			$sql = "DELETE FROM seguirEmpresa(id_estagiario) WHERE id_estagiario = ?";
+			$db->query($sql, [$idEstagiario]);
 			return true;
 		}
 
@@ -80,35 +73,8 @@ class Empregador extends Model implements Subject{
 
 			foreach($idEstagiariosSeguemEmpresa as $id["id_estagiario"]){
 
-				$sql = "SELECT email FROM estagiario WHERE id_users = ?";
-				$emailEstagiario = $db->query($sql, [$id["id_estagiario"]])->getRow();
-
-				helper(['form', 'email','validate']);
-				$email = \Config\Services::email();
-				$config['mailType'] = 'html';
-				$email->initialize($config);
-				$email->setFrom('projeto_moe@hotmail.com');
-				$email->setTo("vitorhfbc2@hotmail.com");
-				//$email->setCC('britobrito@discente.ufg.br');
-				$email->setSubject("Nova vaga de estágio cadastrada");
-				
-				$email->setMessage("<!DOCTYPE html>
-					<head>
-						<meta charset='utf-8'>
-						<title>MOE</title>
-					 </head>
-					<body>
-						<p> Olá, nós somos da empresa <strong>$empresaVaga->empresa</strong>
-						e cadastramos uma nova oportunidade de vaga de estágio feita para você,
-						para ver mais detalhes, acesse o Mural de estágios da UFG no link abaixo.
-						</p>
-						<a href='http://localhost'>Mural de oportunidades de estágio UFG</a>
-					</body>
-				</html>");
-				
-				$email->send();
-				//echo $email->printDebugger();
+				$estagiario = new \App\Models\Estagiario();
+				$estagiario->receberEmail($id["id_estagiario"], $empresaVaga);
 			}
-
 		}
     }

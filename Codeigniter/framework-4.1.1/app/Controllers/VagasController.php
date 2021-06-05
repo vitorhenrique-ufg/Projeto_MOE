@@ -63,15 +63,15 @@ class VagasController extends BaseController
     }
 
     function vagasEngenhariaSoftware($estagiario, $vagasSelecionadas){
-
         $engenhariaSoftware = new \App\Models\StrategyEngSoft();
         $estaAutorizado =  $engenhariaSoftware->interessarEmVaga($estagiario);
 
         if($estaAutorizado){
+            $db = db_connect();
                 foreach($vagasSelecionadas as $vaga["Descricao"]){
-                    $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
-                    $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();
                     
+                    $sqlVagasAssociadas = "SELECT * from vaga WHERE descricao = ?";
+                    $vagaAssociada = $db->query($sqlVagasAssociadas, [$vaga["Descricao"]])->getRow();                    
                     if($vagaAssociada){
                         $sql = "INSERT INTO seguirvaga (id_vaga, id_estagiario) VALUES (?, ?)";
                         $db->query($sql, [$vagaAssociada->id_vaga, @$_SESSION['id_users']]); 

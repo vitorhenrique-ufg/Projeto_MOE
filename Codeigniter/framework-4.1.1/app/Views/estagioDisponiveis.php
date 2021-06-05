@@ -11,10 +11,8 @@
 
 <style>
 
-
     .tableHeader{
         margin-left: 2rem;
-       
     }
 
     .tableColumn{
@@ -28,8 +26,6 @@
         font-weight: bold;
     }
 
-
-
     .link a {
       font-weight: bold;
       background: #f7f8f1;
@@ -41,9 +37,7 @@
       border: 1px solid #eca6ff;
      
       -webkit-border-radius: 4px;
-      border-radius: 4px;  
-     
-      
+      border-radius: 4px;   
     }
      
     .link a:hover {
@@ -52,12 +46,10 @@
       border: 1px solid #9600bf;
     }
 
-
     .content{
       width: 80%;
       min-height: 560px;    
-      margin: 0px auto;
-      position: relative;   
+      margin: 0px auto;  
     }
 
     h1{
@@ -70,7 +62,6 @@
       padding-bottom: 30px;
     }
 
-    
     h1:after{
       content: ' ';
       display: block;
@@ -79,7 +70,14 @@
       margin-top: 10px;
       background: -webkit-linear-gradient(left, rgba(181, 78, 204,0) 0%,rgba(181, 78, 204,0.8) 20%,rgba(181, 78, 204,1) 53%,rgba(181, 78, 204,0.8) 79%,rgba(181, 78, 204,0) 100%);
     }
-
+    .msg-erro{
+        color: green;
+        font-size: 18px;
+        margin-left: 20rem;
+    }
+    .d-none{
+        display:none;
+    }
     #estagiario{
       position: absolute;
       top: 0px;
@@ -103,7 +101,6 @@
 
     table{
         border-collapse: collapse; /* CSS2 */
-        
     }
      
     td {
@@ -114,7 +111,44 @@
         border: 1px solid #8303a3;
         
     }
-   
+   .div-interesse{
+        display: inline-flex;
+        align-items: center;
+        margin-top: 0.3rem;
+   }
+   .input-interesse{
+       margin-right: 0.4rem; 
+   }
+   .input-interesse:hover{
+       cursor:pointer; 
+   }
+   .escrita{
+        height: 50px;
+        width: 400px;
+        margin: 5px;
+        border: 1px solid #eca6ff;
+        font-size: 12pt;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-family: Arial;
+        font-weight: bold
+    }
+   .escrita.botao-seguir{
+        width: 21rem;
+        background: #8303a3;
+        color: white;
+        margin-left: 16rem;
+        margin-top: 2rem;
+    }
+
+    .escrita.botao-seguir i {
+        padding-right: 0.7rem;
+    }
+
+    .escrita.botao-seguir:hover{
+        background: #eca6ff;
+        cursor: pointer;
+    }
 
 </style>
 
@@ -138,6 +172,10 @@
                             </tr>
                         </thead>
                     </table>
+                    <span class="msg-erro d-none"><i class="fa fa-check">Inscrição realizada!</i></span> 
+                    <button type="submit" value="Interesse" class="escrita botao-seguir" onclick="seInscrevaEmVagas()">
+                        <i class="fas fa-check-circle"></i>Cadastrar interesse na(s) vaga(s) selecionada(s)
+                    </button>
                     <p class="link">
                        
                         <a href="http://localhost/EstagiarioController/index">Voltar</a>
@@ -146,14 +184,11 @@
             </div>
         </div>
     </div>
-
-    
 </body>
 
 <script defer>
         obtenhaVagas();
 
-        
         function obtenhaVagas(){
             $.ajax({
                 type: "POST",
@@ -176,7 +211,6 @@
         function monteGrid(empresas){
             const header = document.querySelector('.tableHeader');
             const body = document.createElement('tbody');
-
             empresas.forEach(empresa => {
                 const row = document.createElement('tr');
 
@@ -188,11 +222,68 @@
                     row.appendChild(tableData);
                     body.appendChild(row);
                 }
-                
+                monteCheckInscreverVaga(row, body);
                 header.appendChild(body);
             });
-        }  
+        }
+        
+        function monteCheckInscreverVaga(row, body){
+            const div = document.createElement('div');
+            const input = document.createElement('input');
+            input.classList.add('input-interesse');
+            input.setAttribute('type', 'checkbox');
+            const label = document.createElement('label');
+            label.innerText = "Interesse";
 
+            div.appendChild(input);
+            div.appendChild(label);
+            div.classList.add('div-interesse')
+            row.appendChild(div);
+            body.appendChild(row);
+        }
+
+        function seInscrevaEmVagas(){
+            const mensagem = document.querySelector('.msg-erro');
+            const vagas = [];
+            const vagasSelecionadas = Array.from(document.querySelectorAll('tr input:checked'));
+            
+                if(vagasSelecionadas.length == 0){
+                    alert('É preciso selecionar ao menos uma vaga para demonstrar interesse!');
+                    return;
+                }
+
+            vagasSelecionadas.forEach(el => {
+                const obj = {
+                    Descricao: el.parentElement.parentElement.firstElementChild.textContent
+                };
+                vagas.push(obj);
+            });
+            const jsonVagas = JSON.stringify(vagas);
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/VagasController/seInscrevaEmVagas",
+                data: {jsonVagas},
+                success: function (result) {
+                    if (result.sucesso) {
+                        mensagem.classList.remove('d-none');
+                        return;
+                    }else{
+                        if(result.curso == 'EngenhariaSoftware'){
+                            alert('Para o curso de Engenharia de software é necessário ter cursado entre 20 e 80% do curso para se candidatar à vaga!');
+                        }else if(result.curso == 'EngenhariaComputacao'){
+                            alert('Para o curso de Engenharia da computação é necessário ter cursado entre 40 e 80% do curso para se candidatar à vaga!');
+                        }else if(result.curso == 'SistemaInformacao'){
+                            alert('Para o curso de Sistemas de informações é necessário ter cursado entre 20 e 80% do curso para se candidatar à vaga!');
+                        }else{
+                            alert('Vagas não encontradas!');
+                        }
+                    }
+                },
+                error: function (e1) {
+                    alert(e1.responseText);
+                }
+            }); 
+        }
 </script>
 
 </html>

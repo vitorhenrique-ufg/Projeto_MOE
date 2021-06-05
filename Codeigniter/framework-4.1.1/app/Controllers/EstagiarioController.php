@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use CodeIgniter\API\ResponseTrait;
+use App\Models\Empregador;
 global $id;
 
 if(defined('BASEPATH') && !$this->input->is_ajax_request()){
@@ -125,7 +126,7 @@ class EstagiarioController extends BaseController
         @session_start();
         $db = db_connect();
         $empresasSelecionadas = json_decode(@$_POST['jsonEmpresas'], true);
-
+        $empregador = new \App\Models\Empregador();
         try{
             foreach($empresasSelecionadas as $empresa["Nome"]){
                 $sqlEmpresasAssociadas = "SELECT * from empregador WHERE empresa = ?";
@@ -135,9 +136,8 @@ class EstagiarioController extends BaseController
                 
                 $result = $db->query($verifica, [@$_SESSION['id_users'], $empresasAssociadas->id_users])->getRow();
                 
-                if($result == 0){
-                    $sql = "INSERT INTO seguirempresa (id_estagiario, id_empregador) VALUES (?, ?)";
-                    $db->query($sql, [@$_SESSION['id_users'], $empresasAssociadas->id_users]); 
+                if($result == 0){                    
+                    $empregador->addObserver(@$_SESSION['id_users'], $empresasAssociadas->id_users);
                 }       
             }
             header('Content-Type: application/json');

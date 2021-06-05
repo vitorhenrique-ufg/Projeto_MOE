@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 use CodeIgniter\Model;
-use App\Models\Strategy;
 
 if(defined('BASEPATH') && !$this->input->is_ajax_request()){
     exit ('No direct script acess allowed in EstagiarioModel');   
+}
+interface Strategy{
+    public function interessarEmVaga($estagiario);
 }
 
 class StrategyEngComp extends Model implements Strategy{

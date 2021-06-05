@@ -189,7 +189,7 @@
 
 	<nav class="menu-empregador">
 		<ul>
-			<li><a href="#" onclick="aoSelecionarAlterarDados()">Alterar dados</a></li>
+			<li><a href="#" onclick="aoSelecionarAlterarDadosEmpregador()">Alterar dados</a></li>
 			<li><a href="#">Estágio</a>
 				<ul>
 					<li><a href="http://localhost/EmpregadorController/cadastrarVagaEstagio">Cadastrar vaga</a></li>
@@ -207,49 +207,13 @@
 <script defer>
 
 
-function aoSelecionarAlterarDados() {
+function aoSelecionarAlterarDadosEmpregador() {
 	window.location.href = "http://localhost/EmpregadorController/atualiza";
-	
 }
-
-function aoClicarAlterar() {
-	$.ajax({
-		type: "POST",
-		url: "http://localhost/EmpregadorController/atualizaEmpregador",
-		data: {
-			email: document.getElementById('email').value,
-			senha: document.getElementById('senha').value,
-			confirmasenha: document.getElementById('confirmasenha').value,
-			empresa: document.getElementById('empresa').value,
-			contato: document.getElementById('contato').value,
-			endereco: document.getElementById('endereco').value,
-			descricao: document.getElementById('descricao').value,
-		},
-		success: function (result) {
-			if (result.sucesso == true) {
-				window.location.href = "http://localhost/EmpregadorController/index";
-				
-			} else {
-				if (result.mensagem == "diferente") {
-					alert("As senhas são diferentes.");
-				} else if (result.mensagem == "possui") {
-					alert("A senha deve contar pelo menos um caracter especial.");
-				}
-			}
-
-		},
-		error: function (e1) {
-			alert("deu errado");
-		}
-	});
-}
-
-
 
 function aoSelecionarConsultarEstagiario() {
 	window.location.href = "http://localhost/EmpregadorController/estagiarios";
 }
-
 </script>
 
 </html>

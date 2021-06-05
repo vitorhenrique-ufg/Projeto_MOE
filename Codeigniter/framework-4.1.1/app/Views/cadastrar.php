@@ -262,17 +262,17 @@
 					<h1>Cadastro</h1>
 					<p> 
 		                <label for="email">E-mail:</label>
-		                <input id="email" name="email"  type="email" placeholder="lucas@gmail.com" required/>
+		                <input id="email" name="email"  type="email" placeholder="lucas@gmail.com"/>
 		            </p>
 
 					<p> 
                         <label for="senha">Senha:</label>
-                        <input id="senha" name="senha" type="password" placeholder="Sua senha" maxlength="15" required /> 
+                        <input id="senha" name="senha" type="password" placeholder="Sua senha" maxlength="15"/> 
                     </p>
 
                     <p> 
                         <label for="confirmasenha">Confirme a senha:</label>
-                        <input id="confirmasenha" name="confirmasenha" type="password" placeholder="Sua senha" maxlength="15" required /> 
+                        <input id="confirmasenha" name="confirmasenha" type="password" placeholder="Sua senha" maxlength="15"/> 
                     </p>
 
 					
@@ -290,7 +290,7 @@
 					<div class="div-estagiario">
 						<p> 
 			                <label for="nome">Nome completo:</label>
-			                <input id="nome" name="nome"  type="text" placeholder="Ex: Lucas Oliveira de Souza" maxlength="50" required/>
+			                <input id="nome" name="nome"  type="text" placeholder="Ex: Lucas Oliveira de Souza" maxlength="50"/>
 			            </p>
 
 			            <p> 
@@ -314,12 +314,12 @@
 
 			            <p> 
 			                <label for="ano">Ano de ingresso:</label>
-			                <input id="ano" name="ano"  type="text" placeholder="Ex: 2019" maxlength="5" required/>
+			                <input id="ano" name="ano"  type="text" placeholder="Ex: 2019" maxlength="5"/>
 			            </p>
 
 						<p> 
 			                <label for="curriculo">Curriculo:</label>
-			                <input id="curriculo" name="curriculo"  type="text" placeholder="Ex: Desenvolvedor" maxlength="5" required/>
+			                <input id="curriculo" name="curriculo"  type="text" placeholder="Ex: Desenvolvedor" maxlength="100"/>
 			            </p>
 						
 						
@@ -328,24 +328,23 @@
 					<div class="div-empregador">
 						<p> 
 			                <label for="empresa">Nome da empresa:</label>
-			                <input id="empresa" name="empresa"  type="text" placeholder="Ex: Totvs" maxlength="50" required/>
+			                <input id="empresa" name="empresa"  type="text" placeholder="Ex: Totvs" maxlength="50"/>
 			            </p>
 
 						<p> 
 			                <label for="contato">Contato:</label>
-			                <input id="contato" name="contato"  type="text" placeholder="Ex: Paulo" maxlength="50" required/>
+			                <input id="contato" name="contato"  type="text" placeholder="Ex: Paulo" maxlength="50"/>
 			            </p>
 
 			            <p> 
 			                <label for="endereco">Endereço:</label>
-			                <input id="endereco" name="endereco"  type="text" placeholder="Ex: Av. 2, 253, Marista" maxlength="50" required/>
+			                <input id="endereco" name="endereco"  type="text" placeholder="Ex: Av. 2, 253, Marista" maxlength="50"/>
 			            </p>
 
 						<p> 
 			                <label for="descricao">Descrição:</label>
-			                <input id="descricao" name="descricao"  type="text" placeholder="descreva a empresa" maxlength="50" required/>
+			                <input id="descricao" name="descricao"  type="text" placeholder="descreva a empresa" maxlength="50"/>
 			            </p>
-
 
 					</div>
 
@@ -355,9 +354,8 @@
 					<span class="possui d-none"><i class="fa fa-exclamation-triangle">Usuário já possui cadastro</i></span>
 
 					<p> 
-                        <input type="submit" value="Entrar" onclick="aoClicarCadastrar()" /> 
+                        <input type="submit" value="Cadastrar" onclick="aoClicarCadastrar()" /> 
                     </p>
-
 
 					<p class="link">
                         Já possui cadastro?
@@ -425,10 +423,7 @@
 			const possui = document.querySelector('.possui');
 			const diferente = document.querySelector('.diferente');
 
-			
-
 			if (radioEstagiario.checked) {
-				debugger;
 				$.ajax({
             		type: "POST",
 
@@ -464,8 +459,7 @@
 						if (result.sucesso == true) {
 
 							if (result.mensagem == 'Estagiario') {
-								
-								window.location.href = "http://localhost";
+								alert('Cadastro realizado com sucesso!Confirme seu email para poder utilizar o MOE.');
 							}
 						} 
 		            },
@@ -514,8 +508,7 @@
 						}
 						
 						if (result.sucesso == true) {	
-							window.location.href = "http://localhost";
-							
+							alert('Cadastro realizado com sucesso!Confirme seu email para poder utilizar o MOE.');
 						} 
 					},
 					error: function (e1) {
